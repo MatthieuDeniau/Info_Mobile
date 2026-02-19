@@ -14,6 +14,7 @@ captures/
 .cxx/
 *.aab
 *.apk
+*.ap_
 output-metadata.json
 
 # IntelliJ
@@ -32,3 +33,22 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+#ALL
+.gradle/
+build/
+local.properties
+.idea/
+*.iml
+*.log
+*.apk
+*.aab
+*.class
+*.dex
+captures/
+.externalNativeBuild/
+.cxx/
+*.jks
+*.keystore
+.Ds_Store
+Thumbs.db
