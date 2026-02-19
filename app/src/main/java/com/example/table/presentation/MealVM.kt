@@ -1,0 +1,54 @@
+package com.example.table.presentation
+
+data class MealVM (
+    val id: Int = -1,
+    val name: String = "NONE",
+    val description: String = "NONE",
+    val ingredients: List<String> = emptyList(),
+    val lastMade: String? = null,
+)
+
+val meals = listOf(
+    MealVM(
+        id = 1,
+        name = "Pâtes carbo",
+        description = "Pâtes avec sauce crémeuse au parmesan et bacon",
+        ingredients = listOf("Pâtes", "Bacon", "Parmesan", "Crème"),
+        lastMade = "2026-02-10"
+    ),
+    MealVM(
+        id = 2,
+        name = "Salade César",
+        description = "Salade avec poulet, croûtons et parmesan",
+        ingredients = listOf("Laitue", "Poulet", "Croûtons", "Parmesan", "Sauce César"),
+        lastMade = "2026-02-12"
+    ),
+    MealVM(
+        id = 3,
+        name = "Pizza maison",
+        description = "Pizza avec sauce tomate, fromage et pepperoni",
+        ingredients = listOf("Pâte à pizza", "Sauce tomate", "Fromage", "Pepperoni"),
+        lastMade = "2026-02-14"
+    ),
+    MealVM(
+        id = 4,
+        name = "Omelette aux légumes",
+        description = "Omelette avec poivrons, champignons et oignons",
+        ingredients = listOf("Œufs", "Poivrons", "Champignons", "Oignons", "Sel", "Poivre"),
+        lastMade = "2026-02-11"
+    ),
+    MealVM(
+        id = 5,
+        name = "Soupe de légumes",
+        description = "Soupe maison avec carottes, poireaux et pommes de terre",
+        ingredients = listOf("Carottes", "Poireaux", "Pommes de terre", "Sel", "Poivre"),
+        lastMade = "2026-02-13"
+    ),
+    MealVM(
+        id = 6,
+        name = "Tacos au poulet",
+        description = "Tacos avec poulet, salade, tomates et fromage",
+        ingredients = listOf("Tortilla", "Poulet", "Salade", "Tomates", "Fromage"),
+        lastMade = "2026-02-15"
+    )
+)
