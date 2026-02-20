@@ -19,6 +19,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,49 +33,105 @@ import com.example.table.presentation.components.MealCard
 
 @Composable
 fun ListMealScreen(innerPadding: PaddingValues) {
-    Column (
-        modifier = Modifier
-            .padding(innerPadding)
-            .fillMaxSize()
-    ){
-        Box {
-            Text(
-                text = "Repas planifiés",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(
-                        Color(red = 156, blue = 44, green = 98),
+    val localMeals = remember { mutableStateOf(meals) }
+    if (localMeals.value.isEmpty()) {
+        Column (
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize()
+                .background(
+                    Color(red = 250, blue = 112, green = 165),
+                ),
+        ){
+            Box {
+                Text(
+                    text = "Repas planifiés",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(
+                            Color(red = 156, blue = 44, green = 98),
+                        )
+                        .padding(vertical = 20.dp),
+                    style = TextStyle(
+                        fontSize = 36.sp,
+                        textAlign = TextAlign.Left
                     )
-                    .padding(vertical = 20.dp),
-                style = TextStyle(
-                    fontSize = 36.sp,
-                    textAlign = TextAlign.Left
                 )
-            )
-            IconButton(
-                onClick = {},
-                modifier = Modifier.align(Alignment.CenterEnd)
+                IconButton(
+                    onClick = {},
+                    modifier = Modifier.align(Alignment.CenterEnd)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Menu,
+                        contentDescription = "Menu",
+                        tint = Color.Black
+                    )
+                }
+            }
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                contentAlignment = Alignment.Center
             ) {
-                Icon(
-                    imageVector = Icons.Default.Menu,
-                    contentDescription = "Menu",
-                    tint = Color.Black
+                Text(
+                    text = "Aucun repas pour le moment",
+                    fontSize = 20.sp,
+                    color = Color.Black
+
                 )
             }
         }
-        LazyColumn (
+    }
+    else
+    {
+        Column (
             modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize()
                 .background(
                     Color(red = 250, blue = 112, green = 165),
+                ),
+        ){
+            Box {
+                Text(
+                    text = "Repas planifiés",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(
+                            Color(red = 156, blue = 44, green = 98),
+                        )
+                        .padding(vertical = 20.dp),
+                    style = TextStyle(
+                        fontSize = 36.sp,
+                        textAlign = TextAlign.Left
+                    )
                 )
-                .padding(horizontal = 16.dp, vertical = 16.dp)
-        ) {
-            meals.forEach { meal ->
-                item {
-                    MealCard(meal)
-                    Spacer(modifier = Modifier.height(16.dp))
+                IconButton(
+                    onClick = {},
+                    modifier = Modifier.align(Alignment.CenterEnd)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Menu,
+                        contentDescription = "Menu",
+                        tint = Color.Black
+                    )
                 }
+            }
+            LazyColumn (
+                modifier = Modifier
+                    .padding(horizontal = 16.dp, vertical = 16.dp)
+            ) {
+                localMeals.value.forEach { meal ->
+                    item {
+                        MealCard(meal) {
+                            println("Deleting meal")
+                            localMeals.value = localMeals.value.filter { it != meal }.toMutableList()
+                        }
+                        Spacer(modifier = Modifier.height(16.dp))
+                    }
 
+                }
             }
         }
     }

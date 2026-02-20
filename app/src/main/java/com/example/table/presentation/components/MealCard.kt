@@ -60,7 +60,7 @@ fun MealCardTest (meal: MealVM){
 }
 
 @Composable
-fun MealCard (meal: MealVM) {
+fun MealCard (meal: MealVM, onDeleteClick: (MealVM) -> Unit) {
     Box (
         modifier = Modifier
             .background(
@@ -87,7 +87,7 @@ fun MealCard (meal: MealVM) {
             }
             if (meal.nextMade != null) {
                 Text(
-                    meal.nextMade ?: "Jamais fait",
+                    meal.nextMade,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -97,7 +97,7 @@ fun MealCard (meal: MealVM) {
             modifier = Modifier.align(Alignment.CenterEnd)
         ) {
             IconButton(
-                onClick = {},
+                onClick = {onDeleteClick(meal)},
                 //modifier = Modifier.fillMaxSize()
             ) {
                 Icon(

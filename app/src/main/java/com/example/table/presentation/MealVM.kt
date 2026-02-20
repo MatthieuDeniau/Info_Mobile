@@ -9,7 +9,7 @@ data class MealVM (
     val nextMade: String? = null,
 )
 
-val meals = listOf(
+val meals = mutableListOf(
     MealVM(
         id = 1,
         name = "Pâtes carbo",
