@@ -6,7 +6,7 @@ data class MealVM (
     val description: String = "NONE",
     val ingredients: List<String> = emptyList(),
     val lastMade: String? = null,
-    val nextMade: String? = null,
+    val nextMade: String,
 )
 
 val meals = mutableListOf(
@@ -44,7 +44,7 @@ val meals = mutableListOf(
     ),
     MealVM(
         id = 5,
-        name = "Soupe de légumes",
+        name = "Soupe de légumes v2",
         description = "Soupe maison avec carottes, poireaux et pommes de terre",
         ingredients = listOf("Carottes", "Poireaux", "Pommes de terre", "Sel", "Poivre"),
         lastMade = "2026-02-13",
@@ -52,6 +52,14 @@ val meals = mutableListOf(
     ),
     MealVM(
         id = 6,
+        name = "Tacos au poulet v0",
+        description = "Tacos avec poulet, salade, tomates et fromage",
+        ingredients = listOf("Tortilla", "Poulet", "Salade", "Tomates", "Fromage"),
+        lastMade = null,
+        nextMade = "2026-02-29",
+    ),
+    MealVM(
+        id = 7,
         name = "Tacos au poulet",
         description = "Tacos avec poulet, salade, tomates et fromage",
         ingredients = listOf("Tortilla", "Poulet", "Salade", "Tomates", "Fromage"),
@@ -59,16 +67,8 @@ val meals = mutableListOf(
         nextMade = "2026-02-29",
     ),
     MealVM(
-        id = 6,
-        name = "Tacos au poulet",
-        description = "Tacos avec poulet, salade, tomates et fromage",
-        ingredients = listOf("Tortilla", "Poulet", "Salade", "Tomates", "Fromage"),
-        lastMade = null,
-        nextMade = "2026-02-29",
-    ),
-    MealVM(
-        id = 6,
-        name = "Tacos au poulet",
+        id = 8,
+        name = "Tacos au poulet v2",
         description = "Tacos avec poulet, salade, tomates et fromage",
         ingredients = listOf("Tortilla", "Poulet", "Salade", "Tomates", "Fromage"),
         lastMade = null,

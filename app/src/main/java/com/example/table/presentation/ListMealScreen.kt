@@ -33,16 +33,18 @@ import com.example.table.presentation.components.MealCard
 
 @Composable
 fun ListMealScreen(innerPadding: PaddingValues) {
-    val localMeals = remember { mutableStateOf(meals) }
-    if (localMeals.value.isEmpty()) {
-        Column (
+
+    val localMeals = remember { mutableStateOf(meals.toMutableList()) }
+
+    Column (
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
                 .background(
                     Color(red = 250, blue = 112, green = 165),
-                ),
+                )
         ){
+        if (localMeals.value.isEmpty()) {
             Box {
                 Text(
                     text = "Repas planifiés",
@@ -82,24 +84,14 @@ fun ListMealScreen(innerPadding: PaddingValues) {
                 )
             }
         }
-    }
-    else
-    {
-        Column (
-            modifier = Modifier
-                .padding(innerPadding)
-                .fillMaxSize()
-                .background(
-                    Color(red = 250, blue = 112, green = 165),
-                ),
-        ){
+        else {
             Box {
                 Text(
                     text = "Repas planifiés",
                     modifier = Modifier
                         .fillMaxWidth()
                         .background(
-                            Color(red = 156, blue = 44, green = 98),
+                            Color(red = 156, blue = 44, green = 98)
                         )
                         .padding(vertical = 20.dp),
                     style = TextStyle(
@@ -118,8 +110,9 @@ fun ListMealScreen(innerPadding: PaddingValues) {
                     )
                 }
             }
-            LazyColumn (
+            LazyColumn(
                 modifier = Modifier
+                    .fillMaxSize()
                     .padding(horizontal = 16.dp, vertical = 16.dp)
             ) {
                 localMeals.value.forEach { meal ->
@@ -130,7 +123,6 @@ fun ListMealScreen(innerPadding: PaddingValues) {
                         }
                         Spacer(modifier = Modifier.height(16.dp))
                     }
-
                 }
             }
         }

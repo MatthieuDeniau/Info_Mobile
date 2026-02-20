@@ -1,13 +1,13 @@
 package com.example.table.presentation.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -21,7 +21,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -32,7 +31,10 @@ fun MealCardTest (meal: MealVM){
     Column (modifier = Modifier
         //.border(width = 1.dp, color = Color.Red)
         .fillMaxSize()
-        .background(Color(red = 156, blue = 44, green = 98), shape = RoundedCornerShape(10.dp))
+        .background(
+            Color(red = 156f / 255f, blue = 44f / 255f, green = 98f / 255f),
+            shape = RoundedCornerShape(10.dp)
+        )
     ) {
         Text(meal.name,
             style = TextStyle(
@@ -69,8 +71,10 @@ fun MealCard (meal: MealVM, onDeleteClick: (MealVM) -> Unit) {
             )
             .padding(16.dp)
     ) {
-        Column {
-            Row(
+        Column (
+            modifier = Modifier.align(Alignment.CenterEnd)
+        ) {
+            Row (
                 modifier = Modifier.fillMaxSize(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -85,9 +89,14 @@ fun MealCard (meal: MealVM, onDeleteClick: (MealVM) -> Unit) {
                     overflow = TextOverflow.Ellipsis
                 )
             }
-            if (meal.nextMade != null) {
+            Spacer(modifier = Modifier.height(16.dp))
+            Row (
+                modifier = Modifier.fillMaxSize(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
+            ) {
                 Text(
-                    meal.nextMade,
+                    text = meal.nextMade,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )

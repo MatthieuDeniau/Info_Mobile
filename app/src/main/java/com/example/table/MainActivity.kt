@@ -29,8 +29,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier
                         .fillMaxSize()
                         .background(
-                            Color(red = 156, blue = 44, green = 98),
-                        )
+                            Color(red = 250, blue = 112, green = 165),
+                        ),
                 ) { innerPadding ->
                     ListMealScreen(innerPadding)
                 }
