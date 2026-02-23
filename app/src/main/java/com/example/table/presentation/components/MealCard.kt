@@ -27,41 +27,6 @@ import androidx.compose.ui.unit.sp
 import com.example.table.presentation.MealVM
 
 @Composable
-fun MealCardTest (meal: MealVM){
-    Column (modifier = Modifier
-        //.border(width = 1.dp, color = Color.Red)
-        .fillMaxSize()
-        .background(
-            Color(red = 156f / 255f, blue = 44f / 255f, green = 98f / 255f),
-            shape = RoundedCornerShape(10.dp)
-        )
-    ) {
-        Text(meal.name,
-            style = TextStyle(
-                fontSize = 32.sp,
-                color = Color.Black
-            ),
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis
-        )
-        Text(meal.description,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis
-        )
-        for ((index, ingredient) in meal.ingredients.withIndex()) {
-            Text("${index + 1}. $ingredient",
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
-        }
-        Text(meal.lastMade ?: "Jamais fait",
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis
-        )
-    }
-}
-
-@Composable
 fun MealCard (meal: MealVM, onDeleteClick: (MealVM) -> Unit) {
     Box (
         modifier = Modifier
