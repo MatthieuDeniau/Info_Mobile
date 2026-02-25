@@ -26,12 +26,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.table.presentation.components.MealCard
-import com.example.table.utils.meals
+import com.example.table.utils.*
 
 @Composable
 fun ListMealScreen(innerPadding: PaddingValues) {
 
-    val localMeals = remember { mutableStateOf(meals.toMutableList()) }
+    val localMeals = remember { mutableStateOf(getMeals()) }
 
     Column (
             modifier = Modifier
