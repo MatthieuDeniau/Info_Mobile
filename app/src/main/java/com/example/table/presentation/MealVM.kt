@@ -6,5 +6,5 @@ data class MealVM (
     val description: String = "NONE",
     val ingredients: List<String> = emptyList(),
     val lastMade: String? = null,
-    val nextMade: String,
+    val nextMade: String = "NONE",
 )

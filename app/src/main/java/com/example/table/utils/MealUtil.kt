@@ -2,7 +2,7 @@ package com.example.table.utils
 
 import com.example.table.presentation.MealVM
 
-val meals : MutableList<MealVM> = mutableListOf(
+val mealsData : MutableList<MealVM> = mutableListOf(
     MealVM(
         id = 1,
         name = "Pâtes carbo",
@@ -68,3 +68,19 @@ val meals : MutableList<MealVM> = mutableListOf(
         nextMade = "2026-02-29",
     )
 )
+
+fun getMeals() : List<MealVM> {
+    return mealsData
+}
+
+fun addOrUpdateMeal(meal : MealVM) {
+    val existingMeal = mealsData.find { it.name == meal.name }
+
+    existingMeal?.let { mealsData.remove(it) }
+
+    mealsData.add(meal)
+}
+
+fun deleteMealFromList(meal : MealVM) {
+    mealsData.remove(meal)
+}

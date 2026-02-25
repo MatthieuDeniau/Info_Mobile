@@ -71,8 +71,7 @@ fun MealCard (meal: MealVM, onDeleteClick: (MealVM) -> Unit) {
             modifier = Modifier.align(Alignment.CenterEnd)
         ) {
             IconButton(
-                onClick = {onDeleteClick(meal)},
-                //modifier = Modifier.fillMaxSize()
+                onClick = { onDeleteClick(meal) },
             ) {
                 Icon(
                     imageVector = Icons.Default.Delete,
@@ -82,7 +81,6 @@ fun MealCard (meal: MealVM, onDeleteClick: (MealVM) -> Unit) {
             }
             IconButton(
                 onClick = {},
-                //modifier = Modifier.fillMaxSize()
             ) {
                 Icon(
                     imageVector = Icons.Default.Edit,
