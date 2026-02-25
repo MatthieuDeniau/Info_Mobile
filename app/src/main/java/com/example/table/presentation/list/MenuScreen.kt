@@ -18,6 +18,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material3.Button
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -36,7 +37,7 @@ import com.example.table.navigation.Screen
 import com.example.table.presentation.components.MealCard
 
 @Composable
-fun MenuScreen(
+fun MenuScreen (
     navController: NavController,
     viewModel: MenuViewModel
 ) {
@@ -90,7 +91,7 @@ fun MenuScreen(
                 verticalArrangement = Arrangement.Center
 
             ) {
-                Box (
+                Box(
                     modifier = Modifier
                         .background(
                             Color(red = 156, blue = 44, green = 98),
@@ -99,16 +100,24 @@ fun MenuScreen(
                         .fillMaxWidth()
                         .padding(16.dp)
                 ) {
-                    Text(
-                        text = "Planifier un repas",
-                        style = TextStyle(
-                            fontSize = 36.sp,
-                            textAlign = TextAlign.Left
+                    IconButton(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        onClick = {
+                            navController.navigate(Screen.AddEditMealScreen.route)
+                        },
+                    ) {
+                        Text(
+                            text = "Planifier un repas",
+                            style = TextStyle(
+                                fontSize = 36.sp,
+                                textAlign = TextAlign.Left
+                            )
                         )
-                    )
+                    }
                 }
                 Spacer(modifier = Modifier.height(16.dp))
-                Box (
+                Box(
                     modifier = Modifier
                         .background(
                             Color(red = 156, blue = 44, green = 98),
@@ -117,16 +126,24 @@ fun MenuScreen(
                         .fillMaxWidth()
                         .padding(16.dp)
                 ) {
-                    Text(
-                        text = "Créer une recette",
-                        style = TextStyle(
-                            fontSize = 36.sp,
-                            textAlign = TextAlign.Left
+                    IconButton(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        onClick = {
+                            //navController.navigate(Screen.AddEditMealScreen.route)
+                        },
+                    ) {
+                        Text(
+                            text = "Créer une recette",
+                            style = TextStyle(
+                                fontSize = 36.sp,
+                                textAlign = TextAlign.Left
+                            )
                         )
-                    )
+                    }
                 }
                 Spacer(modifier = Modifier.height(16.dp))
-                Box (
+                Box(
                     modifier = Modifier
                         .background(
                             Color(red = 156, blue = 44, green = 98),
@@ -135,13 +152,21 @@ fun MenuScreen(
                         .fillMaxWidth()
                         .padding(16.dp)
                 ) {
-                    Text(
-                        text = "Modifier une recette",
-                        style = TextStyle(
-                            fontSize = 36.sp,
-                            textAlign = TextAlign.Left
+                    IconButton(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        onClick = {
+                            //navController.navigate(Screen.AddEditMealScreen.route)
+                        },
+                    ) {
+                        Text(
+                            text = "Modifier une recette",
+                            style = TextStyle(
+                                fontSize = 36.sp,
+                                textAlign = TextAlign.Left
+                            )
                         )
-                    )
+                    }
                 }
             }
         }

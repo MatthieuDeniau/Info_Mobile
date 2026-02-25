@@ -18,8 +18,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.table.navigation.Screen
 import com.example.table.presentation.list.AddEditMealViewModel
-import com.example.table.presentation.list.AddEditStoryScreen
 import com.example.table.presentation.list.ListMealScreen
+import com.example.table.presentation.list.AddEditStoryScreen
 import com.example.table.presentation.list.ListMealsViewModel
 import com.example.table.presentation.list.MenuScreen
 import com.example.table.presentation.list.MenuViewModel

@@ -32,12 +32,12 @@ import com.example.table.navigation.Screen
 import com.example.table.presentation.components.MealCard
 
 @Composable
-fun ListMealScreen(
+fun ListMealScreen (
     navController: NavController,
     viewModel: ListMealsViewModel
 ) {
     Scaffold (
-        floatingActionButton = {
+        /*floatingActionButton = {
             FloatingActionButton (
                 onClick = { navController.navigate(Screen.AddEditMealScreen.route) },
                 modifier = Modifier.background(
@@ -49,7 +49,7 @@ fun ListMealScreen(
                     contentDescription = "Add a meal"
                 )
             }
-        }
+        }*/
     ) { contentPadding ->
         Column(
             modifier = Modifier

@@ -21,7 +21,7 @@ import androidx.navigation.NavController
 import com.example.table.navigation.Screen
 
 @Composable
-fun AddEditStoryScreen(
+fun AddEditStoryScreen (
     navController: NavController,
     viewModel: AddEditMealViewModel
 ) {
