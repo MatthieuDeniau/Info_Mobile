@@ -24,10 +24,13 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.table.noir
 import com.example.table.presentation.MealVM
+import com.example.table.presentation.RecipeVM
+import java.time.format.DateTimeFormatter
 
 @Composable
-fun MealCard (meal: MealVM, onDeleteClick: (MealVM) -> Unit) {
+fun MealCard (meal: MealVM, recipe: RecipeVM, onDeleteClick: (MealVM) -> Unit) {
     Box (
         modifier = Modifier
             .background(
@@ -45,10 +48,10 @@ fun MealCard (meal: MealVM, onDeleteClick: (MealVM) -> Unit) {
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Text(
-                    meal.name,
+                    recipe.name,
                     style = TextStyle(
                         fontSize = 25.sp,
-                        color = Color.Black
+                        color = noir
                     ),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
@@ -61,7 +64,7 @@ fun MealCard (meal: MealVM, onDeleteClick: (MealVM) -> Unit) {
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Text(
-                    text = meal.nextMade,
+                    text = meal.date.format(DateTimeFormatter.ofPattern("MMMM")),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -76,7 +79,7 @@ fun MealCard (meal: MealVM, onDeleteClick: (MealVM) -> Unit) {
                 Icon(
                     imageVector = Icons.Default.Delete,
                     contentDescription = "Delete",
-                    tint = Color.Black
+                    tint = noir
                 )
             }
             IconButton(
@@ -85,7 +88,7 @@ fun MealCard (meal: MealVM, onDeleteClick: (MealVM) -> Unit) {
                 Icon(
                     imageVector = Icons.Default.Edit,
                     contentDescription = "Edit",
-                    tint = Color.Black
+                    tint = noir
                 )
             }
         }

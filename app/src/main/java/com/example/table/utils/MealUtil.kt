@@ -1,86 +1,101 @@
 package com.example.table.utils
 
 import com.example.table.presentation.MealVM
+import java.time.LocalDate
 
-val mealsData : MutableList<MealVM> = mutableListOf(
-    MealVM(
-        id = 1,
-        name = "Pâtes carbo",
-        description = "Pâtes avec sauce crémeuse au parmesan et bacon",
-        ingredients = listOf("Pâtes", "Bacon", "Parmesan", "Crème"),
-        lastMade = "2026-02-10",
-        nextMade = "2026-02-12",
-    ),
-    MealVM(
-        id = 2,
-        name = "Salade César",
-        description = "Salade avec poulet, croûtons et parmesan",
-        ingredients = listOf("Laitue", "Poulet", "Croûtons", "Parmesan", "Sauce César"),
-        lastMade = "2026-02-12",
-        nextMade = "2026-02-19",
-    ),
-    MealVM(
-        id = 3,
-        name = "Pizza maison",
-        description = "Pizza avec sauce tomate, fromage et pepperoni",
-        ingredients = listOf("Pâte à pizza", "Sauce tomate", "Fromage", "Pepperoni"),
-        lastMade = "2026-02-14",
-        nextMade = "2026-02-22",
-    ),
-    MealVM(
-        id = 4,
-        name = "Omelette aux légumes",
-        description = "Omelette avec poivrons, champignons et oignons",
-        ingredients = listOf("Œufs", "Poivrons", "Champignons", "Oignons", "Sel", "Poivre"),
-        lastMade = "2026-02-11",
-        nextMade = "2026-02-25",
-    ),
-    MealVM(
-        id = 5,
-        name = "Soupe de légumes v2",
-        description = "Soupe maison avec carottes, poireaux et pommes de terre",
-        ingredients = listOf("Carottes", "Poireaux", "Pommes de terre", "Sel", "Poivre"),
-        lastMade = "2026-02-13",
-        nextMade = "2026-02-28",
-    ),
-    MealVM(
-        id = 6,
-        name = "Tacos au poulet v0",
-        description = "Tacos avec poulet, salade, tomates et fromage",
-        ingredients = listOf("Tortilla", "Poulet", "Salade", "Tomates", "Fromage"),
-        lastMade = null,
-        nextMade = "2026-02-29",
-    ),
-    MealVM(
-        id = 7,
-        name = "Tacos au poulet",
-        description = "Tacos avec poulet, salade, tomates et fromage",
-        ingredients = listOf("Tortilla", "Poulet", "Salade", "Tomates", "Fromage"),
-        lastMade = null,
-        nextMade = "2026-02-29",
-    ),
-    MealVM(
-        id = 8,
-        name = "Tacos au poulet v2",
-        description = "Tacos avec poulet, salade, tomates et fromage",
-        ingredients = listOf("Tortilla", "Poulet", "Salade", "Tomates", "Fromage"),
-        lastMade = null,
-        nextMade = "2026-02-29",
-    )
-)
+private var mealIdCounter = 0
 
-fun getMeals() : List<MealVM> {
-    return mealsData
+fun generateMealId(): Int {
+    return mealIdCounter++
 }
 
-fun addOrUpdateMeal(meal : MealVM) {
-    val existingMeal = mealsData.find { it.name == meal.name }
+fun getMeals() : List<MealVM> {
+    return mealData
+}
 
-    existingMeal?.let { mealsData.remove(it) }
+fun addOrUpdateMeal(meal: MealVM) {
+    val existingMeal = mealData.find { it.id == meal.id }
 
-    mealsData.add(meal)
+    existingMeal?.let { mealData.remove(it) }
+
+    mealData.add(meal)
 }
 
 fun deleteMealFromList(meal : MealVM) {
-    mealsData.remove(meal)
+    mealData.remove(meal)
 }
+
+val mealData: MutableList<MealVM> = mutableListOf(
+    MealVM(
+        id = generateMealId(),
+        date = LocalDate.parse("2026-02-01"),
+        recipe = getRecipeById(0)!!,
+        slot = 0
+    ),
+    MealVM(
+        id = generateMealId(),
+        date = LocalDate.parse("2026-02-02"),
+        recipe = getRecipeById(1)!!,
+        slot = 1
+    ),
+    MealVM(
+        id = generateMealId(),
+        date = LocalDate.parse("2026-02-03"),
+        recipe = getRecipeById(2)!!,
+        slot = 0
+    ),
+    MealVM(
+        id = generateMealId(),
+        date = LocalDate.parse("2026-02-04"),
+        recipe = getRecipeById(3)!!,
+        slot = 1
+    ),
+    MealVM(
+        id = generateMealId(),
+        date = LocalDate.parse("2026-02-05"),
+        recipe = getRecipeById(4)!!,
+        slot = 0
+    ),
+    MealVM(
+        id = generateMealId(),
+        date = LocalDate.parse("2026-02-06"),
+        recipe = getRecipeById(0)!!,
+        slot = 1
+    ),
+    MealVM(
+        id = generateMealId(),
+        date = LocalDate.parse("2026-02-07"),
+        recipe = getRecipeById(1)!!,
+        slot = 0
+    ),
+    MealVM(
+        id = generateMealId(),
+        date = LocalDate.parse("2026-02-08"),
+        recipe = getRecipeById(2)!!,
+        slot = 1
+    ),
+    MealVM(
+        id = generateMealId(),
+        date = LocalDate.parse("2026-02-09"),
+        recipe = getRecipeById(3)!!,
+        slot = 0
+    ),
+    MealVM(
+        id = generateMealId(),
+        date = LocalDate.parse("2026-02-10"),
+        recipe = getRecipeById(4)!!,
+        slot = 1
+    ),
+    MealVM(
+        id = generateMealId(),
+        date = LocalDate.parse("2026-02-11"),
+        recipe = getRecipeById(0)!!,
+        slot = 0
+    ),
+    MealVM(
+        id = generateMealId(),
+        date = LocalDate.parse("2026-02-12"),
+        recipe = getRecipeById(1)!!,
+        slot = 1
+    )
+)
