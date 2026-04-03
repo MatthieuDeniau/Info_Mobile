@@ -1,4 +1,4 @@
-package com.example.table.presentation.list
+package com.example.table.presentation.planning
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

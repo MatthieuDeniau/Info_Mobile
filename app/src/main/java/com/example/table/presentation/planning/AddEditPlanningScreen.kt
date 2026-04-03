@@ -1,8 +1,7 @@
-package com.example.table.presentation.list
+package com.example.table.presentation.planning
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -27,7 +26,7 @@ import com.example.table.gris
 import com.example.table.navigation.Screen
 import com.example.table.noir
 import com.example.table.presentation.RecipeVM
-import com.example.table.presentation.components.TopBar
+import com.example.table.presentation.planning.components.TopBar
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 

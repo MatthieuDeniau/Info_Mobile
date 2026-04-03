@@ -1,4 +1,4 @@
-package com.example.table.presentation.components
+package com.example.table.presentation.planning.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -97,9 +97,11 @@ fun BottomBar(navController: NavController) {
         MenuItem(
             icon = Icons.Default.Menu,
             label = "Recettes",
-            isSelected = false
+            isSelected = currentRoute == Screen.RecipeListScreen.route
         ) {
-
+            if (currentRoute != Screen.RecipeListScreen.route) {
+                navController.navigate(Screen.RecipeListScreen.route)
+            }
         }
     }
 }

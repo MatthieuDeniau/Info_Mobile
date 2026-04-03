@@ -1,4 +1,4 @@
-package com.example.table.presentation.list
+package com.example.table.presentation.planning
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf

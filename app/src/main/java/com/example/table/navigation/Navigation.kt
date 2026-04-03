@@ -15,70 +15,81 @@ suspend fun populateTestData(
     recipeDao: RecipeDao,
     ingredientDao: IngredientDao
 ) {
-    val ingredientNames = listOf(
-        "Pâtes (spaghetti)",
-        "Pancetta",
-        "Œufs",
-        "Parmesan râpé",
-        "Poivre noir",
 
-        "Blancs de poulet",
-        "Lait de coco",
-        "Pâte de curry",
-        "Oignons",
-        "Ail",
-        "Huile",
+    // Liste complète des ingrédients AVEC quantités
+    val ingredientsData = listOf(
+        "Pâtes (spaghetti)" to "200 g",
+        "Pancetta" to "100 g",
+        "Œufs" to "2",
+        "Parmesan râpé" to "50 g",
+        "Poivre noir" to "1 c. à café",
 
-        "Laitue romaine",
-        "Poulet grillé",
-        "Croûtons",
-        "Sauce César",
+        "Blancs de poulet" to "300 g",
+        "Lait de coco" to "200 ml",
+        "Pâte de curry" to "2 c. à soupe",
+        "Oignons" to "1",
+        "Ail" to "2 gousses",
+        "Huile" to "1 c. à soupe",
 
-        "Pain à burger",
-        "Steak haché",
-        "Fromage cheddar",
-        "Tomate",
-        "Salade",
-        "Sauce burger",
+        "Laitue romaine" to "1",
+        "Poulet grillé" to "150 g",
+        "Croûtons" to "30 g",
+        "Sauce César" to "3 c. à soupe",
 
-        "Feuilles de lasagne",
-        "Viande hachée",
-        "Sauce tomate",
-        "Béchamel",
-        "Mozzarella",
+        "Pain à burger" to "2",
+        "Steak haché" to "2 x 120 g",
+        "Fromage cheddar" to "2 tranches",
+        "Tomate" to "2 tranches",
+        "Salade" to "Quelques feuilles",
+        "Sauce burger" to "2 c. à soupe",
 
-        "Pâte brisée",
-        "Lardons",
-        "Crème fraîche",
-        "Gruyère râpé",
+        "Feuilles de lasagne" to "6",
+        "Viande hachée" to "300 g",
+        "Sauce tomate" to "200 ml",
+        "Béchamel" to "150 ml",
+        "Mozzarella" to "100 g",
 
-        "Riz arborio",
-        "Champignons",
-        "Bouillon de légumes",
-        "Beurre",
+        "Pâte brisée" to "1",
+        "Lardons" to "150 g",
+        "Crème fraîche" to "200 ml",
+        "Gruyère râpé" to "80 g",
 
-        "Chocolat noir",
-        "Sucre",
-        "Farine",
+        "Riz arborio" to "200 g",
+        "Champignons" to "150 g",
+        "Bouillon de légumes" to "500 ml",
+        "Beurre" to "20 g",
 
-        "Aubergines",
-        "Courgettes",
-        "Poivrons",
-        "Tomates",
+        "Chocolat noir" to "100 g",
+        "Sucre" to "80 g",
+        "Farine" to "60 g",
 
-        "Fruits rouges congelés",
-        "Banane",
-        "Yaourt",
-        "Granola",
-        "Miel"
+        "Aubergines" to "1",
+        "Courgettes" to "1",
+        "Poivrons" to "1",
+        "Tomates" to "2",
+
+        "Fruits rouges congelés" to "150 g",
+        "Banane" to "1",
+        "Yaourt" to "100 g",
+        "Granola" to "30 g",
+        "Miel" to "1 c. à soupe"
     )
 
-    val ingredientIds = ingredientNames.map { name ->
-        ingredientDao.insert(IngredientEntity(name = name)).toInt()
+    // Insertion des ingrédients avec quantité
+    val ingredientIds = ingredientsData.map { (name, quantity) ->
+        ingredientDao.insert(
+            IngredientEntity(
+                name = name,
+                quantity = quantity
+            )
+        ).toInt()
     }
 
-    fun id(name: String): Int = ingredientIds[ingredientNames.indexOf(name)]
+    // Helper pour récupérer l'ID d'un ingrédient
+    fun id(name: String): Int =
+        ingredientIds[ingredientsData.indexOfFirst { it.first == name }]
 
+    // Recettes complètes
     val recipes = listOf(
         RecipeEntity(
             name = "Pâtes Carbonara",
@@ -218,6 +229,14 @@ suspend fun populateTestData(
     recipes.forEach { recipeDao.insertRecipe(it) }
 }
 
+suspend fun clearAllData(
+    recipeDao: RecipeDao,
+    ingredientDao: IngredientDao
+) {
+    ingredientDao.deleteAll()
+    recipeDao.deleteAll()
+}
+
 fun initTestRecipes(context: Context) {
     val db = Room.databaseBuilder(
         context.applicationContext,
@@ -227,8 +246,9 @@ fun initTestRecipes(context: Context) {
 
     CoroutineScope(Dispatchers.IO).launch {
         val recipeDao = db.recipeDao
-
         val ingredientDao = db.ingredientDao
+
+        //clearAllData(recipeDao, ingredientDao)
 
         val count = recipeDao.getRecipeCount()
 

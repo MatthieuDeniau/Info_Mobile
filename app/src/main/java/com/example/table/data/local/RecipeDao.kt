@@ -33,5 +33,5 @@ interface RecipeDao {
     suspend fun delete(recipe: RecipeEntity)
 
     @Query("DELETE FROM recipes")
-    suspend fun deleteAllRecipes()
+    suspend fun deleteAll()
 }

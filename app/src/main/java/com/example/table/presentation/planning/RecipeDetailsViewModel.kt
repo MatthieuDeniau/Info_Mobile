@@ -1,4 +1,4 @@
-package com.example.table.presentation.list
+package com.example.table.presentation.planning
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

@@ -1,4 +1,4 @@
-package com.example.table.presentation.list
+package com.example.table.presentation.planning
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -15,7 +15,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -24,7 +23,7 @@ import com.example.table.gris
 import com.example.table.noir
 import com.example.table.blanc
 import com.example.table.navigation.Screen
-import com.example.table.presentation.components.TopBar
+import com.example.table.presentation.planning.components.TopBar
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 

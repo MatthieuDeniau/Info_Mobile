@@ -6,7 +6,7 @@ import com.example.table.data.local.RecipeDao
 import com.example.table.domain.model.MealEntity
 import com.example.table.presentation.MealVM
 import com.example.table.presentation.RecipeVM
-import com.example.table.presentation.list.DayMeals
+import com.example.table.presentation.planning.DayMeals
 import com.example.table.utils.Week
 import com.example.table.utils.days
 import kotlinx.coroutines.flow.Flow

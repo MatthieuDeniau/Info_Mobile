@@ -1,4 +1,4 @@
-package com.example.table.presentation.components
+package com.example.table.presentation.planning.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.example.table.blanc
 import com.example.table.gris
 import com.example.table.noir
-import com.example.table.presentation.list.DayMeals
+import com.example.table.presentation.planning.DayMeals
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Locale

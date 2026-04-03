@@ -1,11 +1,10 @@
-package com.example.table.presentation.list
+package com.example.table.presentation.planning
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -21,8 +20,7 @@ import androidx.navigation.NavController
 import com.example.table.blanc
 import com.example.table.gris
 import com.example.table.noir
-import com.example.table.presentation.components.TopBar
-import com.example.table.presentation.list.RecipeDetailsViewModel
+import com.example.table.presentation.planning.components.TopBar
 
 @Composable
 fun RecipeDetailsScreen(
@@ -83,7 +81,14 @@ fun RecipeDetailsScreen(
                             Text(
                                 text = "• ${ingredient.name}",
                                 fontSize = 16.sp,
-                                color = noir
+                                color = noir,
+                                modifier = Modifier.weight(1f)
+                            )
+
+                            Text(
+                                text = ingredient.quantity,
+                                fontSize = 16.sp,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
                     }

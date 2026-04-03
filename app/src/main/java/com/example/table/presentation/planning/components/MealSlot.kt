@@ -1,4 +1,4 @@
-package com.example.table.presentation.components
+package com.example.table.presentation.planning.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

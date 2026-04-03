@@ -1,10 +1,9 @@
-package com.example.table.presentation.list
+package com.example.table.presentation.planning
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
@@ -12,20 +11,14 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.table.blanc
 import com.example.table.gris
 import com.example.table.navigation.Screen
-import com.example.table.noir
-import com.example.table.presentation.components.BottomBar
-import com.example.table.presentation.components.DayCard
-import com.example.table.presentation.components.TopBar
+import com.example.table.presentation.planning.components.BottomBar
+import com.example.table.presentation.planning.components.DayCard
+import com.example.table.presentation.planning.components.TopBar
 
 @Composable
 fun PlanningScreen(
@@ -56,7 +49,8 @@ fun PlanningScreen(
                 .background(gris)
         ) {
             LazyColumn(
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier
+                    .fillMaxSize()
             ) {
                 items(weekMeals) { day ->
                     DayCard(

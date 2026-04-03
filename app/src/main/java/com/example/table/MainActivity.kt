@@ -12,8 +12,10 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.table.navigation.Screen
 import com.example.table.navigation.initTestRecipes
-import com.example.table.presentation.list.*
-import com.example.table.presentation.list.RecipeDetailsScreen
+import com.example.table.presentation.planning.*
+import com.example.table.presentation.recipe.CreateRecipeScreen
+import com.example.table.presentation.recipe.EditRecipeScreen
+import com.example.table.presentation.recipe.RecipeListScreen
 import com.example.table.ui.theme.ÀTableTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -65,6 +67,24 @@ class MainActivity : ComponentActivity() {
                         )
                     ) {
                         RecipeDetailsScreen(navController)
+                    }
+                    composable(
+                        route = Screen.RecipeListScreen.route,
+                    ) {
+                        RecipeListScreen(navController)
+                    }
+                    composable(
+                        route = Screen.CreateRecipeScreen.route,
+                    ) {
+                        CreateRecipeScreen(navController)
+                    }
+                    composable(
+                        route = Screen.EditRecipeScreen.route + "/{recipeId}",
+                        arguments = listOf(
+                            navArgument("recipeId") { type = NavType.IntType }
+                        )
+                    ) {
+                        EditRecipeScreen(navController)
                     }
                 }
             }
