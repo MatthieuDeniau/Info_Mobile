@@ -87,13 +87,7 @@ fun BottomBar(navController: NavController) {
                 navController.navigate(Screen.PlanningScreen.route)
             }
         }
-        MenuItem(
-            icon = Icons.Default.ShoppingCart,
-            label = "Courses",
-            isSelected = false
-        ) {
 
-        }
         MenuItem(
             icon = Icons.Default.Menu,
             label = "Recettes",
