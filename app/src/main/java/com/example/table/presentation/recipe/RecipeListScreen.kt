@@ -128,7 +128,7 @@ fun RecipeItem(
                     Text(
                         text = "${recipe.ingredients.size} ingrédients",
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        color = noir
                     )
                 }
             }

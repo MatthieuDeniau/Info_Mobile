@@ -13,10 +13,9 @@ fun RecipeActionButtons(
     onSave: () -> Unit,
     onCancel: () -> Unit,
     saveButtonText: String = "Enregistrer",
-    modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp)
@@ -25,7 +24,8 @@ fun RecipeActionButtons(
             onClick = onCancel,
             modifier = Modifier.weight(1f),
             colors = ButtonDefaults.outlinedButtonColors(
-                contentColor = noir
+                containerColor = noir,
+                contentColor = blanc
             )
         ) {
             Text("Annuler")
