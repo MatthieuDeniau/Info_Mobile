@@ -88,7 +88,7 @@ fun RecipeDetailsScreen(
                             Text(
                                 text = ingredient.quantity,
                                 fontSize = 16.sp,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                                color = noir
                             )
                         }
                     }

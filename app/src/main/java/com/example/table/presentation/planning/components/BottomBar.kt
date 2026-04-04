@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.table.blanc
+import com.example.table.gris
 import com.example.table.navigation.Screen
 import com.example.table.noir
 
@@ -39,7 +40,7 @@ fun MenuItem(
     isSelected: Boolean,
     onClick: () -> Unit
 ) {
-    val color = if (isSelected) noir else Color.Gray
+    val color = if (isSelected) noir else gris
 
     Column(
         modifier = Modifier

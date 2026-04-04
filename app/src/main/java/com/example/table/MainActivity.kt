@@ -19,8 +19,8 @@ import com.example.table.presentation.recipe.RecipeListScreen
 import com.example.table.ui.theme.ÀTableTheme
 import dagger.hilt.android.AndroidEntryPoint
 
-val blanc : Color = Color(250,250,250)
-val gris : Color = Color(240, 240, 240)
+val blanc : Color = Color(250,165,112)
+val gris : Color = Color(156, 98, 44)
 val noir : Color = Color(0,0,0)
 
 @AndroidEntryPoint

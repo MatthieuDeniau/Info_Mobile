@@ -21,7 +21,7 @@ fun IngredientListEditor(
     Column(modifier = modifier.fillMaxWidth()) {
         Text(
             text = "Ingrédients",
-            style = MaterialTheme.typography.titleMedium,
+            color = noir,
             modifier = Modifier.padding(vertical = 8.dp)
         )
 
@@ -47,7 +47,7 @@ fun IngredientListEditor(
                 onIngredientsChange(ingredients + IngredientVM(name = "", quantity = ""))
             },
             colors = ButtonDefaults.buttonColors(
-                containerColor = noir.copy(alpha = 0.7f),
+                containerColor = noir,
                 contentColor = blanc
             ),
             modifier = Modifier.align(Alignment.Start)

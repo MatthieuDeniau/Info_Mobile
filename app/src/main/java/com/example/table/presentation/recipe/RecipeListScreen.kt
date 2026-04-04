@@ -128,7 +128,7 @@ fun RecipeItem(
                     Text(
                         text = "${recipe.ingredients.size} ingrédients",
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        color = noir
                     )
                 }
             }
@@ -153,7 +153,7 @@ fun RecipeItem(
                 Icon(
                     imageVector = Icons.Default.Delete,
                     contentDescription = "Supprimer",
-                    tint = Color.Red.copy(alpha = 0.85f)
+                    tint = Color.Black
                 )
             }
         }

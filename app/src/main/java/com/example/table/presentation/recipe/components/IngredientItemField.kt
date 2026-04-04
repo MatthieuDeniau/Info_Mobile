@@ -7,9 +7,12 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.table.noir
 import com.example.table.presentation.IngredientVM
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun IngredientItemField(
     ingredient: IngredientVM,
@@ -29,7 +32,16 @@ fun IngredientItemField(
             onValueChange = { onIngredientChange(ingredient.copy(name = it)) },
             label = { Text("Ingrédient") },
             modifier = Modifier.weight(2f),
-            singleLine = true
+            singleLine = true,
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedTextColor = noir,
+                unfocusedTextColor = noir,
+                focusedBorderColor = noir,
+                unfocusedBorderColor = noir,
+                focusedLabelColor = noir,
+                unfocusedLabelColor = noir,
+                cursorColor = noir
+            )
         )
         
         OutlinedTextField(
@@ -37,14 +49,25 @@ fun IngredientItemField(
             onValueChange = { onIngredientChange(ingredient.copy(quantity = it)) },
             label = { Text("Quantité") },
             modifier = Modifier.weight(1f),
-            singleLine = true
+            singleLine = true,
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedTextColor = noir,
+                unfocusedTextColor = noir,
+                focusedBorderColor = noir,
+                unfocusedBorderColor = noir,
+                focusedLabelColor = noir,
+                unfocusedLabelColor = noir,
+                cursorColor = noir
+            )
         )
 
-        IconButton(onClick = onDelete) {
+        IconButton(
+            onClick = onDelete
+        ) {
             Icon(
                 imageVector = Icons.Default.Delete,
                 contentDescription = "Supprimer l'ingrédient",
-                tint = MaterialTheme.colorScheme.error
+                tint = noir
             )
         }
     }
