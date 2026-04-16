@@ -26,7 +26,7 @@ import com.example.table.gris
 import com.example.table.navigation.Screen
 import com.example.table.noir
 import com.example.table.presentation.RecipeVM
-import com.example.table.presentation.planning.components.TopBar
+import com.example.table.presentation.generalComponents.TopBar
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
@@ -65,18 +65,17 @@ fun AddEditPlanningScreen(
                     contentDescription = "Enregistrer"
                 )
             }
-        }
+        },
+        containerColor = gris
     ) { contentPadding ->
         Column(
             modifier = Modifier
                 .padding(contentPadding)
                 .fillMaxSize()
-                .background(gris)
         ) {
             Column(
                 modifier = Modifier
                     .padding(16.dp)
-                    .fillMaxWidth()
             ) {
                 val formatter = DateTimeFormatter.ofPattern("EEEE d MMMM", Locale.FRENCH)
                 val formattedDate = selectedDate.format(formatter)
@@ -139,7 +138,7 @@ fun AddEditPlanningScreen(
                         .weight(1f),
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    items(recipeList) { recipe ->
+                    items(recipeList, key = { it.id }) { recipe ->
                         RecipeItem(
                             recipe = recipe,
                             isSelected = selectedRecipe?.id == recipe.id,

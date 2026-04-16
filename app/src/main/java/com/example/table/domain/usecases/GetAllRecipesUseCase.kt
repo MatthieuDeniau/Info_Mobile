@@ -9,11 +9,13 @@ import javax.inject.Inject
 
 class GetAllRecipesUseCase @Inject constructor(
     private val recipeDao: RecipeDao,
-    private val ingredientDao: IngredientDao
+    private val ingredientDao: IngredientDao,
 ) {
     operator fun invoke(): Flow<List<RecipeVM>> {
         return recipeDao.getAllRecipes().map { entities ->
-            entities.map { RecipeVM.fromEntity(it, ingredientDao) }
+            entities.map { entity ->
+                RecipeVM.fromEntity(entity, ingredientDao)
+            }
         }
     }
 }

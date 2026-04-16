@@ -2,7 +2,7 @@ package com.example.table.presentation.planning
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.table.domain.usecases.PlanningUseCases
+import com.example.table.data.repository.PlanningRepository
 import com.example.table.presentation.MealVM
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -18,18 +18,18 @@ data class DayMeals(
 
 @HiltViewModel
 class PlanningViewModel @Inject constructor(
-    private val useCases: PlanningUseCases
+    private val useCases: PlanningRepository
 ) : ViewModel() {
 
     private val _startDate = MutableStateFlow(LocalDate.now(ZoneId.of("America/Toronto")))
     val startDate: StateFlow<LocalDate> = _startDate.asStateFlow()
 
     fun nextPeriod() {
-        _startDate.value = _startDate.value.plusDays(7)
+        _startDate.value = useCases.getNextPeriod(_startDate.value)
     }
 
     fun previousPeriod() {
-        _startDate.value = _startDate.value.minusDays(7)
+        _startDate.value = useCases.getPreviousPeriod(_startDate.value)
     }
 
     val mealsForWeek: StateFlow<List<DayMeals>> =

@@ -44,7 +44,7 @@ fun IngredientListEditor(
 
         Button(
             onClick = {
-                onIngredientsChange(ingredients + IngredientVM(name = "", quantity = ""))
+                onIngredientsChange(ingredients + IngredientVM(name = "", quantity = null))
             },
             colors = ButtonDefaults.buttonColors(
                 containerColor = noir,

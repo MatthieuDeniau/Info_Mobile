@@ -5,6 +5,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
+import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,13 +28,15 @@ fun DayCard(
         modifier = Modifier
             .padding(12.dp)
             .fillMaxWidth(),
-        colors = CardDefaults.cardColors(
-            containerColor = blanc
-        )
+        elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
+        colors = CardDefaults.cardColors(containerColor = blanc),
+        shape = RoundedCornerShape(16.dp)
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+        ) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
@@ -63,8 +66,6 @@ fun DayCard(
                     )
                 }
             }
-
-            Spacer(Modifier.height(12.dp))
 
             if (dayMeals.mealsBySlot[1] != null) {
                 MealSlot(

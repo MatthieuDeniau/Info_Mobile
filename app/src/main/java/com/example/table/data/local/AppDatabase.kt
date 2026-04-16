@@ -8,12 +8,14 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.table.domain.model.MealEntity
 import com.example.table.domain.model.RecipeEntity
 import com.example.table.domain.model.IngredientEntity
+import com.example.table.domain.model.SettingsEntity
 
 @Database(
     entities = [
         RecipeEntity::class,
         MealEntity::class,
-        IngredientEntity::class
+        IngredientEntity::class,
+        SettingsEntity::class
     ],
     version = 1,
     exportSchema = false
@@ -26,6 +28,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract val recipeDao: RecipeDao
     abstract val mealDao: MealDao
     abstract val ingredientDao: IngredientDao
+    abstract val settingsDao: SettingsDao
 
     companion object {
         const val DATABASE_NAME = "mealplanner.db"

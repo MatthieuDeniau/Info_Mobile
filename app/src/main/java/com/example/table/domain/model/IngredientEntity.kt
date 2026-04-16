@@ -7,5 +7,6 @@ import androidx.room.PrimaryKey
 data class IngredientEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val name: String,
-    val quantity: String = ""
+    val quantity: Double?,
+    val unit: String?
 )

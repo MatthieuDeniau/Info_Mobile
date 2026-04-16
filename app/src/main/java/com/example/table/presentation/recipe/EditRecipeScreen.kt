@@ -3,8 +3,9 @@ package com.example.table.presentation.recipe
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -13,8 +14,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.table.blanc
 import com.example.table.gris
-import com.example.table.presentation.planning.components.TopBar
+import com.example.table.presentation.generalComponents.TopBar
 import com.example.table.presentation.recipe.components.*
 
 @Composable
@@ -30,62 +32,56 @@ fun EditRecipeScreen(
         topBar = {
             TopBar(
                 label = "Modifier la Recette",
-                rightIcon = Icons.Default.Close,
-                onRightClick = { navController.popBackStack() }
             )
-        }
-    ) { paddingValues ->
-        Column(
+        },
+        containerColor = gris
+    ) { padding ->
+        Card(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
-                .background(gris)
-        ) {
+                .padding(padding)
+                .padding(horizontal = 12.dp),
+            elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
+            colors = CardDefaults.cardColors(containerColor = blanc),
+            shape = RoundedCornerShape(16.dp)
+        ){
+
             LazyColumn(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp),
+                    .padding(start = 16.dp, end = 16.dp),
                 verticalArrangement = Arrangement.spacedBy(24.dp)
             ) {
-
                 item {
+                    Spacer(modifier = Modifier.height(20.dp))
                     RecipeNameField(
                         name = name,
-                        onNameChange = viewModel::onNameChange
+                        onNameChange = { value -> viewModel.onNameChange(value) }
                     )
                 }
-
                 item {
                     IngredientListEditor(
                         ingredients = ingredients,
-                        onIngredientsChange = viewModel::onIngredientsChange
+                        onIngredientsChange = { value -> viewModel.onIngredientsChange(value) }
                     )
                 }
-
                 item {
                     InstructionsField(
                         instructions = instructions,
-                        onInstructionsChange = viewModel::onInstructionsChange
+                        onInstructionsChange = { value -> viewModel.onInstructionsChange(value) }
                     )
                 }
-
                 item {
                     Spacer(modifier = Modifier.height(16.dp))
-
                     RecipeActionButtons(
                         onSave = {
                             viewModel.updateRecipe {
                                 navController.popBackStack()
-                            }
-                        },
+                            } },
                         onCancel = { navController.popBackStack() },
                         saveButtonText = "Mettre à jour"
                     )
                 }
-
-                item { Spacer(modifier = Modifier.height(32.dp)) }
             }
-
         }
     }
 }

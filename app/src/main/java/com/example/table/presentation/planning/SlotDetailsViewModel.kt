@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.table.domain.usecases.PlanningUseCases
+import com.example.table.data.repository.PlanningRepository
 import com.example.table.presentation.MealVM
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SlotDetailsViewModel @Inject constructor(
-    private val useCases: PlanningUseCases,
+    private val useCases: PlanningRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -46,13 +46,7 @@ class SlotDetailsViewModel @Inject constructor(
     }
 
     fun getSlotLabel(): String {
-        return when (_slot.value) {
-            1 -> "Petit-déjeuner"
-            2 -> "Déjeuner"
-            3 -> "En-cas"
-            4 -> "Dîner"
-            else -> "Repas"
-        }
+        return useCases.getSlotLabel(_slot.value)
     }
 
     fun deleteMeal(meal: MealVM) {

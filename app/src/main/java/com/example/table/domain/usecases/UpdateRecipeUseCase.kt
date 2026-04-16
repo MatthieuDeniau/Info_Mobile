@@ -23,22 +23,27 @@ class UpdateRecipeUseCase @Inject constructor(
             if (ingredientVM.id <= 0) {
                 ingredientDao.insert(IngredientEntity(
                     name = ingredientVM.name,
-                    quantity = ingredientVM.quantity
+                    quantity = ingredientVM.quantity,
+                    unit = ingredientVM.unit
                 )).toInt()
             } else {
                 ingredientDao.getIngredientById(ingredientVM.id)?.let { existing ->
-                    if (existing.name != ingredientVM.name || existing.quantity != ingredientVM.quantity) {
+                    if (existing.name != ingredientVM.name || 
+                        existing.quantity != ingredientVM.quantity ||
+                        existing.unit != ingredientVM.unit) {
                         ingredientDao.insert(IngredientEntity(
                             id = existing.id,
                             name = ingredientVM.name,
-                            quantity = ingredientVM.quantity
+                            quantity = ingredientVM.quantity,
+                            unit = ingredientVM.unit
                         )).toInt()
                     } else {
                         ingredientVM.id
                     }
                 } ?: ingredientDao.insert(IngredientEntity(
                     name = ingredientVM.name,
-                    quantity = ingredientVM.quantity
+                    quantity = ingredientVM.quantity,
+                    unit = ingredientVM.unit
                 )).toInt()
             }
         }

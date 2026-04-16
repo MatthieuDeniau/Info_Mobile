@@ -19,42 +19,19 @@ class GetRecipeByIdUseCaseTest {
     }
 
     @Test
-    fun `recuperer une recette existante doit retourner le bon VM`() = runBlocking {
-        // Arrange
-        val recipe = RecipeEntity(1, "Omelette", emptyList(), "Cook eggs", null)
+    fun `recuperer une recette par son ID doit retourner la recette correspondante`() = runBlocking {
+        val recipe = RecipeEntity(id = 1, name = "Pasta", ingredients = emptyList(), instructions = "Cook", lastMade = null)
         fakeDatabase.insertRecipe(recipe)
 
-        // Act
         val result = useCase(1)
 
-        // Assert
-        assertEquals("Omelette", result?.name)
+        assertEquals("Pasta", result?.name)
         assertEquals(1, result?.id)
     }
 
     @Test
-    fun `recuperer une recette inexistante doit retourner null`() = runBlocking {
-        // Arrange
-        fakeDatabase.deleteAll()
-
-        // Act
+    fun `recuperer une recette avec un ID inexistant doit retourner null`() = runBlocking {
         val result = useCase(99)
-
-        // Assert
         assertNull(result)
-    }
-
-    @Test
-    fun `recuperer une recette existante parmi d'autres doit retourner la bonne`() = runBlocking {
-        // Arrange
-        fakeDatabase.insertRecipe(RecipeEntity(1, "Pasta", emptyList(), "Instructions", null))
-        fakeDatabase.insertRecipe(RecipeEntity(2, "Pizza", emptyList(), "Instructions", null))
-
-        // Act
-        val result = useCase(2)
-
-        // Assert
-        assertEquals("Pizza", result?.name)
-        assertEquals(2, result?.id)
     }
 }

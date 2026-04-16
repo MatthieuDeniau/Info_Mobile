@@ -3,7 +3,7 @@ package com.example.table.presentation.planning
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.table.domain.usecases.RecipeUseCases
+import com.example.table.data.repository.RecipeRepository
 import com.example.table.presentation.RecipeVM
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RecipeDetailsViewModel @Inject constructor(
-    private val useCases: RecipeUseCases,
+    private val useCases: RecipeRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 

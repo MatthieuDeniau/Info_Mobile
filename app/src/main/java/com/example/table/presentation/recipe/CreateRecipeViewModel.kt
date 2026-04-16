@@ -2,7 +2,7 @@ package com.example.table.presentation.recipe
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.table.domain.usecases.SaveRecipeUseCase
+import com.example.table.data.repository.RecipeRepository
 import com.example.table.presentation.IngredientVM
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CreateRecipeViewModel @Inject constructor(
-    private val saveRecipeUseCase: SaveRecipeUseCase
+    private val useCases: RecipeRepository
 ) : ViewModel() {
 
     private val _name = MutableStateFlow("")
@@ -39,7 +39,7 @@ class CreateRecipeViewModel @Inject constructor(
 
     fun saveRecipe(onSaved: () -> Unit) {
         viewModelScope.launch {
-            saveRecipeUseCase(
+            useCases.saveRecipe(
                 name = _name.value,
                 ingredients = _ingredients.value,
                 instructions = _instructions.value

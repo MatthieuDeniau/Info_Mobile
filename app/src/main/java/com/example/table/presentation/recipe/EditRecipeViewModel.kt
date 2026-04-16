@@ -3,8 +3,7 @@ package com.example.table.presentation.recipe
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.table.domain.usecases.GetRecipeByIdUseCase
-import com.example.table.domain.usecases.UpdateRecipeUseCase
+import com.example.table.data.repository.RecipeRepository
 import com.example.table.presentation.IngredientVM
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,8 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EditRecipeViewModel @Inject constructor(
-    private val getRecipeByIdUseCase: GetRecipeByIdUseCase,
-    private val updateRecipeUseCase: UpdateRecipeUseCase,
+    private val useCases: RecipeRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -35,7 +33,7 @@ class EditRecipeViewModel @Inject constructor(
         savedStateHandle.get<Int>("recipeId")?.let { id ->
             recipeId = id
             viewModelScope.launch {
-                getRecipeByIdUseCase(id)?.let { recipeData ->
+                useCases.getRecipeById(id)?.let { recipeData ->
                     _name.value = recipeData.name
                     _ingredients.value = recipeData.ingredients
                     _instructions.value = recipeData.instructions
@@ -59,7 +57,7 @@ class EditRecipeViewModel @Inject constructor(
     fun updateRecipe(onUpdated: () -> Unit) {
         if (recipeId == -1) return
         viewModelScope.launch {
-            updateRecipeUseCase(
+            useCases.updateRecipe(
                 id = recipeId,
                 name = _name.value,
                 ingredients = _ingredients.value,

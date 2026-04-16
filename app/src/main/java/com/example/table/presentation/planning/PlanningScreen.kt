@@ -16,9 +16,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.table.gris
 import com.example.table.navigation.Screen
-import com.example.table.presentation.planning.components.BottomBar
+import com.example.table.presentation.generalComponents.BottomBar
 import com.example.table.presentation.planning.components.DayCard
-import com.example.table.presentation.planning.components.TopBar
+import com.example.table.presentation.generalComponents.TopBar
 
 @Composable
 fun PlanningScreen(
@@ -40,18 +40,15 @@ fun PlanningScreen(
         },
         bottomBar = {
             BottomBar(navController)
-        }
+        },
+        containerColor = gris
     ) { contentPadding ->
         Column(
             modifier = Modifier
                 .padding(contentPadding)
                 .fillMaxSize()
-                .background(gris)
         ) {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-            ) {
+            LazyColumn {
                 items(weekMeals) { day ->
                     DayCard(
                         dayMeals = day,

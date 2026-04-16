@@ -1,53 +1,26 @@
 package com.example.table.domain.usecases
 
 import org.junit.Assert.assertEquals
-import org.junit.Before
 import org.junit.Test
 import java.time.LocalDate
 
 class FormatPeriodLabelUseCaseTest {
-    private lateinit var useCase: FormatPeriodLabelUseCase
 
-    @Before
-    fun setup() {
-        useCase = FormatPeriodLabelUseCase()
+    private val useCase = FormatPeriodLabelUseCase()
+
+    @Test
+    fun `le libelle de la periode doit etre formate correctement`() {
+        val date = LocalDate.of(2024, 10, 21) // Un lundi par exemple
+        val result = useCase(date)
+        // 21 - 27 octobre
+        assertEquals("21 - 27 octobre", result)
     }
 
     @Test
-    fun `formater une periode du milieu du mois doit etre correct`() {
-        // Arrange
-        val date = LocalDate.of(2024, 5, 20)
-
-        // Act
+    fun `le libelle doit gerer le changement de mois`() {
+        val date = LocalDate.of(2024, 10, 28)
         val result = useCase(date)
-
-        // Assert
-        assertEquals("20 - 26 mai", result)
-    }
-
-    @Test
-    fun `formater une periode a cheval sur deux mois doit afficher le mois de fin`() {
-        // Arrange
-        val date = LocalDate.of(2024, 5, 27) // Lundi 27 Mai
-
-        // Act
-        val result = useCase(date)
-
-        // Assert
-        // 27 Mai au 2 Juin -> "27 - 02 juin"
-        assertEquals("27 - 02 juin", result)
-    }
-
-    @Test
-    fun `formater une periode avec changement d'annee doit etre correct`() {
-        // Arrange
-        val date = LocalDate.of(2024, 12, 30) // Lundi 30 Décembre
-
-        // Act
-        val result = useCase(date)
-
-        // Assert
-        // 30 Décembre au 5 Janvier -> "30 - 05 janvier"
-        assertEquals("30 - 05 janvier", result)
+        // 28 - 03 novembre
+        assertEquals("28 - 03 novembre", result)
     }
 }

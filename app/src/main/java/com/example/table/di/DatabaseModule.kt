@@ -6,7 +6,6 @@ import com.example.table.data.local.AppDatabase
 import com.example.table.data.local.IngredientDao
 import com.example.table.data.local.MealDao
 import com.example.table.data.local.RecipeDao
-import com.example.table.domain.usecases.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,19 +37,5 @@ object DatabaseModule {
     fun provideIngredientDao(db: AppDatabase): IngredientDao = db.ingredientDao
 
     @Provides
-    @Singleton
-    fun providePlanningUseCases(
-        mealDao: MealDao,
-        recipeDao: RecipeDao,
-        ingredientDao: IngredientDao
-    ): PlanningUseCases {
-        return PlanningUseCases(
-            getMealsForWeek = GetMealsForWeekUseCase(mealDao, recipeDao, ingredientDao),
-            formatPeriodLabel = FormatPeriodLabelUseCase(),
-            deleteMeal = DeleteMealUseCase(mealDao),
-            saveMeal = SaveMealUseCase(mealDao),
-            getAllRecipes = GetAllRecipesUseCase(recipeDao, ingredientDao),
-            getMealsForSlot = GetMealsForSlotUseCase(mealDao, recipeDao, ingredientDao)
-        )
-    }
+    fun provideSettingsDao(db: AppDatabase) = db.settingsDao
 }

@@ -22,7 +22,7 @@ class GetAllRecipesUseCaseTest {
     @Test
     fun `recuperer toutes les recettes doit retourner la liste complete`() = runBlocking {
         // Arrange
-        val ingredient = IngredientEntity(id = 1, name = "Tomate")
+        val ingredient = IngredientEntity(id = 1, name = "Tomate", quantity = 100.0, unit = "g")
         fakeDatabase.insert(ingredient)
         
         val recipe1 = RecipeEntity(1, "A-Recipe", listOf(1), "Instructions 1", null)

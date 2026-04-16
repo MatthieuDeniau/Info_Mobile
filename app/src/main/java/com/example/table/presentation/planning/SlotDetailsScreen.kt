@@ -8,12 +8,14 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -23,7 +25,7 @@ import com.example.table.gris
 import com.example.table.noir
 import com.example.table.blanc
 import com.example.table.navigation.Screen
-import com.example.table.presentation.planning.components.TopBar
+import com.example.table.presentation.generalComponents.TopBar
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
@@ -49,72 +51,82 @@ fun SlotDetailsScreen(
         },
         containerColor = gris
     ) { padding ->
-        Column(
+        Card(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .padding(horizontal = 24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = formattedDate,
-                fontSize = 16.sp,
-                color = noir.copy(alpha = 0.6f),
-                modifier = Modifier.padding(top = 8.dp)
-            )
+                .padding(horizontal = 12.dp),
+            elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
+            colors = CardDefaults.cardColors(containerColor = blanc),
+            shape = RoundedCornerShape(16.dp)
+        ){
+            Column(
+                Modifier.padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = formattedDate,
+                    fontSize = 16.sp,
+                    color = noir,
+                    modifier = Modifier.padding(top = 8.dp)
+                )
 
-            Spacer(modifier = Modifier.height(32.dp))
+                Spacer(modifier = Modifier.height(32.dp))
 
-            if (meals.isEmpty()) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = "Aucun repas pour ce moment.",
-                        color = noir.copy(alpha = 0.5f)
-                    )
-                }
-            } else {
-                LazyColumn(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalArrangement = Arrangement.spacedBy(12.dp)
-                ) {
-                    items(meals) { meal ->
-                        Card(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .clickable {
-                                    navController.navigate(
-                                        Screen.RecipeDetailsScreen.route + "/${meal.recipe.id}"
-                                    )
-                                },
-                            colors = CardDefaults.cardColors(containerColor = blanc),
-                            shape = RoundedCornerShape(16.dp)
-                        ) {
-                            Row(
+                if (meals.isEmpty()) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = "Aucun repas pour ce moment.",
+                            color = noir
+                        )
+                    }
+                } else {
+                    LazyColumn(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(vertical = 4.dp),
+                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        items(meals) { meal ->
+                            Card(
                                 modifier = Modifier
-                                    .padding(16.dp)
-                                    .fillMaxWidth(),
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.SpaceBetween
+                                    .fillMaxSize()
+                                    .clickable {
+                                        navController.navigate(
+                                            Screen.RecipeDetailsScreen.route + "/${meal.recipe.id}"
+                                        )
+                                    },
+                                elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
+                                colors = CardDefaults.cardColors(containerColor = gris),
+                                shape = RoundedCornerShape(16.dp)
                             ) {
-                                Text(
-                                    text = meal.recipe.name,
-                                    fontSize = 18.sp,
-                                    color = noir,
-                                    modifier = Modifier.weight(1f)
-                                )
-
-                                IconButton(
-                                    onClick = { viewModel.deleteMeal(meal) }
+                                Row(
+                                    modifier = Modifier
+                                        .padding(16.dp)
+                                        .fillMaxWidth(),
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.SpaceBetween
                                 ) {
-                                    Icon(
-                                        imageVector = Icons.Default.Delete,
-                                        contentDescription = "Supprimer",
-                                        tint = Color.Black
+                                    Text(
+                                        text = meal.recipe.name,
+                                        fontSize = 18.sp,
+                                        color = noir,
+                                        modifier = Modifier.weight(1f)
                                     )
+
+                                    IconButton(
+                                        onClick = { viewModel.deleteMeal(meal) }
+                                    ) {
+                                        Icon(
+                                            imageVector = Icons.Outlined.Delete,
+                                            contentDescription = "Supprimer",
+                                            tint = Color.Black
+                                        )
+                                    }
                                 }
                             }
                         }

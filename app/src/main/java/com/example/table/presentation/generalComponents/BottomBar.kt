@@ -1,4 +1,4 @@
-package com.example.table.presentation.planning.components
+package com.example.table.presentation.generalComponents
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -11,10 +11,15 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material.icons.outlined.CalendarMonth
+import androidx.compose.material.icons.outlined.Event
+import androidx.compose.material.icons.outlined.Menu
+import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -22,7 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -40,10 +45,11 @@ fun MenuItem(
     isSelected: Boolean,
     onClick: () -> Unit
 ) {
-    val color = if (isSelected) noir else gris
+    val color = if (isSelected) noir else gris.copy(red = 165/250f, green = 165/250f, blue = 165/250f)
 
     Column(
         modifier = Modifier
+            .clip(RoundedCornerShape(15.dp))
             .clickable(onClick = onClick)
             .padding(horizontal = 8.dp, vertical = 4.dp),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -52,7 +58,8 @@ fun MenuItem(
             imageVector = icon,
             contentDescription = label,
             tint = color,
-            modifier = Modifier.size(24.dp)
+            modifier = Modifier
+                .size(24.dp)
         )
         Spacer(modifier = Modifier.height(4.dp))
         Text(
@@ -80,7 +87,7 @@ fun BottomBar(navController: NavController) {
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         MenuItem(
-            icon = Icons.Default.DateRange,
+            icon = Icons.Outlined.Event,//Icons.Outlined.CalendarMonth
             label = "Planning",
             isSelected = currentRoute == Screen.PlanningScreen.route
         ) {
@@ -89,13 +96,33 @@ fun BottomBar(navController: NavController) {
             }
         }
 
+        /*MenuItem(
+            icon = Icons.Outlined.ShoppingCart,
+            label = "NI",
+            isSelected = currentRoute == ""
+        ) {
+            if (currentRoute != "") {
+                navController.navigate("NI")
+            }
+        }*/
+
         MenuItem(
-            icon = Icons.Default.Menu,
+            icon = Icons.AutoMirrored.Default.MenuBook,
             label = "Recettes",
             isSelected = currentRoute == Screen.RecipeListScreen.route
         ) {
             if (currentRoute != Screen.RecipeListScreen.route) {
                 navController.navigate(Screen.RecipeListScreen.route)
+            }
+        }
+
+        MenuItem(
+            icon = Icons.Outlined.Settings,
+            label = "Paramètres",
+            isSelected = currentRoute == Screen.SettingScreen.route
+        ) {
+            if (currentRoute != Screen.SettingScreen.route) {
+                navController.navigate(Screen.SettingScreen.route)
             }
         }
     }

@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.table.domain.usecases.PlanningUseCases
+import com.example.table.data.repository.PlanningRepository
 import com.example.table.presentation.RecipeVM
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,7 +23,7 @@ sealed interface AddEditPlanningEvent {
 
 @HiltViewModel
 class AddEditPlanningViewModel @Inject constructor(
-    private val useCases: PlanningUseCases,
+    private val useCases: PlanningRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -48,7 +48,7 @@ class AddEditPlanningViewModel @Inject constructor(
     private fun loadRecipes() {
         viewModelScope.launch {
             useCases.getAllRecipes().collect { vms ->
-                _recipeList.value = vms
+                _recipeList.value = useCases.sortRecipesByLastUsed(vms)
             }
         }
     }
@@ -75,6 +75,7 @@ class AddEditPlanningViewModel @Inject constructor(
                 date = _date.value,
                 slot = _slot.value
             )
+            _recipeList.value = useCases.sortRecipesByLastUsed(_recipeList.value)
         }
     }
 }

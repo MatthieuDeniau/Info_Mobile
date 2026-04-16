@@ -15,81 +15,71 @@ suspend fun populateTestData(
     recipeDao: RecipeDao,
     ingredientDao: IngredientDao
 ) {
-
-    // Liste complète des ingrédients AVEC quantités
     val ingredientsData = listOf(
-        "Pâtes (spaghetti)" to "200 g",
-        "Pancetta" to "100 g",
-        "Œufs" to "2",
-        "Parmesan râpé" to "50 g",
-        "Poivre noir" to "1 c. à café",
+        IngredientEntity(name = "Pâtes (spaghetti)", quantity = 200.0, unit = "g"),
+        IngredientEntity(name = "Pancetta", quantity = 100.0, unit = "g"),
+        IngredientEntity(name = "Œufs", quantity = 2.0, unit = ""),
+        IngredientEntity(name = "Parmesan râpé", quantity = 50.0, unit = "g"),
+        IngredientEntity(name = "Poivre noir", quantity = 1.0, unit = "c. à café"),
 
-        "Blancs de poulet" to "300 g",
-        "Lait de coco" to "200 ml",
-        "Pâte de curry" to "2 c. à soupe",
-        "Oignons" to "1",
-        "Ail" to "2 gousses",
-        "Huile" to "1 c. à soupe",
+        IngredientEntity(name = "Blancs de poulet", quantity = 300.0, unit = "g"),
+        IngredientEntity(name = "Lait de coco", quantity = 200.0, unit = "ml"),
+        IngredientEntity(name = "Pâte de curry", quantity = 2.0, unit = "c. à soupe"),
+        IngredientEntity(name = "Oignons", quantity = 1.0, unit = ""),
+        IngredientEntity(name = "Ail", quantity = 2.0, unit = "gousses"),
+        IngredientEntity(name = "Huile", quantity = 1.0, unit = "c. à soupe"),
 
-        "Laitue romaine" to "1",
-        "Poulet grillé" to "150 g",
-        "Croûtons" to "30 g",
-        "Sauce César" to "3 c. à soupe",
+        IngredientEntity(name = "Laitue romaine", quantity = 1.0, unit = ""),
+        IngredientEntity(name = "Poulet grillé", quantity = 150.0, unit = "g"),
+        IngredientEntity(name = "Croûtons", quantity = 30.0, unit = "g"),
+        IngredientEntity(name = "Sauce César", quantity = 3.0, unit = "c. à soupe"),
 
-        "Pain à burger" to "2",
-        "Steak haché" to "2 x 120 g",
-        "Fromage cheddar" to "2 tranches",
-        "Tomate" to "2 tranches",
-        "Salade" to "Quelques feuilles",
-        "Sauce burger" to "2 c. à soupe",
+        IngredientEntity(name = "Pain à burger", quantity = 2.0, unit = ""),
+        IngredientEntity(name = "Steak haché", quantity = 240.0, unit = "g"),
+        IngredientEntity(name = "Fromage cheddar", quantity = 2.0, unit = "tranches"),
+        IngredientEntity(name = "Tomate", quantity = 2.0, unit = "tranches"),
+        IngredientEntity(name = "Salade", quantity = null, unit = "Quelques feuilles"),
+        IngredientEntity(name = "Sauce burger", quantity = 2.0, unit = "c. à soupe"),
 
-        "Feuilles de lasagne" to "6",
-        "Viande hachée" to "300 g",
-        "Sauce tomate" to "200 ml",
-        "Béchamel" to "150 ml",
-        "Mozzarella" to "100 g",
+        IngredientEntity(name = "Feuilles de lasagne", quantity = 6.0, unit = ""),
+        IngredientEntity(name = "Viande hachée", quantity = 300.0, unit = "g"),
+        IngredientEntity(name = "Sauce tomate", quantity = 200.0, unit = "ml"),
+        IngredientEntity(name = "Béchamel", quantity = 150.0, unit = "ml"),
+        IngredientEntity(name = "Mozzarella", quantity = 100.0, unit = "g"),
 
-        "Pâte brisée" to "1",
-        "Lardons" to "150 g",
-        "Crème fraîche" to "200 ml",
-        "Gruyère râpé" to "80 g",
+        IngredientEntity(name = "Pâte brisée", quantity = 1.0, unit = ""),
+        IngredientEntity(name = "Lardons", quantity = 150.0, unit = "g"),
+        IngredientEntity(name = "Crème fraîche", quantity = 200.0, unit = "ml"),
+        IngredientEntity(name = "Gruyère râpé", quantity = 80.0, unit = "g"),
 
-        "Riz arborio" to "200 g",
-        "Champignons" to "150 g",
-        "Bouillon de légumes" to "500 ml",
-        "Beurre" to "20 g",
+        IngredientEntity(name = "Riz arborio", quantity = 200.0, unit = "g"),
+        IngredientEntity(name = "Champignons", quantity = 150.0, unit = "g"),
+        IngredientEntity(name = "Bouillon de légumes", quantity = 500.0, unit = "ml"),
+        IngredientEntity(name = "Beurre", quantity = 20.0, unit = "g"),
 
-        "Chocolat noir" to "100 g",
-        "Sucre" to "80 g",
-        "Farine" to "60 g",
+        IngredientEntity(name = "Chocolat noir", quantity = 100.0, unit = "g"),
+        IngredientEntity(name = "Sucre", quantity = 80.0, unit = "g"),
+        IngredientEntity(name = "Farine", quantity = 60.0, unit = "g"),
 
-        "Aubergines" to "1",
-        "Courgettes" to "1",
-        "Poivrons" to "1",
-        "Tomates" to "2",
+        IngredientEntity(name = "Aubergines", quantity = 1.0, unit = ""),
+        IngredientEntity(name = "Courgettes", quantity = 1.0, unit = ""),
+        IngredientEntity(name = "Poivrons", quantity = 1.0, unit = ""),
+        IngredientEntity(name = "Tomates", quantity = 2.0, unit = ""),
 
-        "Fruits rouges congelés" to "150 g",
-        "Banane" to "1",
-        "Yaourt" to "100 g",
-        "Granola" to "30 g",
-        "Miel" to "1 c. à soupe"
+        IngredientEntity(name = "Fruits rouges congelés", quantity = 150.0, unit = "g"),
+        IngredientEntity(name = "Banane", quantity = 1.0, unit = ""),
+        IngredientEntity(name = "Yaourt", quantity = 100.0, unit = "g"),
+        IngredientEntity(name = "Granola", quantity = 30.0, unit = "g"),
+        IngredientEntity(name = "Miel", quantity = 1.0, unit = "c. à soupe")
     )
 
-    // Insertion des ingrédients avec quantité
-    val ingredientIds = ingredientsData.map { (name, quantity) ->
-        ingredientDao.insert(
-            IngredientEntity(
-                name = name,
-                quantity = quantity
-            )
-        ).toInt()
+    val insertedIngredients = ingredientsData.map { entity ->
+        val id = ingredientDao.insert(entity).toInt()
+        entity.copy(id = id)
     }
 
-    // Helper pour récupérer l'ID d'un ingrédient
-    fun id(name: String): Int =
-        ingredientIds[ingredientsData.indexOfFirst { it.first == name }]
+    fun id(name: String): Int = insertedIngredients.find { it.name == name }?.id ?: 0
 
-    // Recettes complètes
     val recipes = listOf(
         RecipeEntity(
             name = "Pâtes Carbonara",
@@ -101,7 +91,7 @@ suspend fun populateTestData(
                 id("Poivre noir")
             ),
             instructions = "Cuire les pâtes, mélanger avec œufs, pancetta et parmesan.",
-            lastMade = null
+            lastMade = "2024-02-20"
         ),
 
         RecipeEntity(
@@ -115,7 +105,7 @@ suspend fun populateTestData(
                 id("Huile")
             ),
             instructions = "Saisir le poulet, ajouter oignons, ail, lait de coco et curry.",
-            lastMade = null
+            lastMade = "2024-02-10"
         ),
 
         RecipeEntity(
@@ -128,7 +118,7 @@ suspend fun populateTestData(
                 id("Sauce César")
             ),
             instructions = "Mélanger la laitue, le poulet grillé, les croûtons et la sauce.",
-            lastMade = null
+            lastMade = ""
         ),
 
         RecipeEntity(
@@ -142,7 +132,7 @@ suspend fun populateTestData(
                 id("Sauce burger")
             ),
             instructions = "Griller le steak, ajouter fromage, légumes et sauce dans le pain.",
-            lastMade = null
+            lastMade = "2024-01-28"
         ),
 
         RecipeEntity(
@@ -155,7 +145,7 @@ suspend fun populateTestData(
                 id("Mozzarella")
             ),
             instructions = "Alterner couches de pâtes, viande, sauce tomate et béchamel.",
-            lastMade = null
+            lastMade = "2024-12-15"
         ),
 
         RecipeEntity(
@@ -168,7 +158,7 @@ suspend fun populateTestData(
                 id("Gruyère râpé")
             ),
             instructions = "Mélanger lardons, crème, œufs et fromage, puis cuire au four.",
-            lastMade = null
+            lastMade = ""
         ),
 
         RecipeEntity(
@@ -182,7 +172,7 @@ suspend fun populateTestData(
                 id("Beurre")
             ),
             instructions = "Cuire le riz lentement avec bouillon, champignons et parmesan.",
-            lastMade = null
+            lastMade = "2024-02-17"
         ),
 
         RecipeEntity(
@@ -195,7 +185,7 @@ suspend fun populateTestData(
                 id("Œufs")
             ),
             instructions = "Mélanger chocolat fondu, beurre, sucre, farine et œufs.",
-            lastMade = null
+            lastMade = "2024-11-02"
         ),
 
         RecipeEntity(
@@ -209,7 +199,7 @@ suspend fun populateTestData(
                 id("Ail")
             ),
             instructions = "Mijoter les légumes coupés en dés dans une cocotte.",
-            lastMade = null
+            lastMade = "2024-01-05"
         ),
 
         RecipeEntity(

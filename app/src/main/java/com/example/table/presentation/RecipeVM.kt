@@ -16,10 +16,9 @@ data class RecipeVM(
             entity: RecipeEntity,
             ingredientDao: IngredientDao
         ): RecipeVM {
-
-            val ingredientVMs = entity.ingredients.map { ingredientId ->
+            val ingredientVMs = entity.ingredients.mapNotNull { ingredientId ->
                 val ingredient = ingredientDao.getIngredientById(ingredientId)
-                IngredientVM.fromEntity(ingredient!!)
+                ingredient?.let { IngredientVM.fromEntity(it) }
             }
 
             return RecipeVM(

@@ -2,9 +2,8 @@ package com.example.table.di
 
 import com.example.table.data.local.IngredientDao
 import com.example.table.data.local.RecipeDao
-import com.example.table.domain.usecases.GetAllRecipesUseCase
-import com.example.table.domain.usecases.GetRecipeByIdUseCase
-import com.example.table.domain.usecases.RecipeUseCases
+import com.example.table.data.repository.RecipeRepository
+import com.example.table.domain.usecases.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,10 +19,14 @@ object RecipeModule {
     fun provideRecipeUseCases(
         recipeDao: RecipeDao,
         ingredientDao: IngredientDao
-    ): RecipeUseCases {
-        return RecipeUseCases(
+    ): RecipeRepository {
+        return RecipeRepository(
             getRecipeById = GetRecipeByIdUseCase(recipeDao, ingredientDao),
-            getAllRecipes = GetAllRecipesUseCase(recipeDao, ingredientDao)
+            getAllRecipes = GetAllRecipesUseCase(recipeDao, ingredientDao),
+            sortRecipesByLastUsed = SortRecipesByLastUsedUseCase(),
+            saveRecipe = SaveRecipeUseCase(recipeDao, ingredientDao),
+            deleteRecipe = DeleteRecipeUseCase(recipeDao),
+            updateRecipe = UpdateRecipeUseCase(recipeDao, ingredientDao)
         )
     }
 }

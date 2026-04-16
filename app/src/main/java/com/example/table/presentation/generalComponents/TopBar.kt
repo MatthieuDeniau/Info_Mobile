@@ -1,4 +1,4 @@
-package com.example.table.presentation.planning.components
+package com.example.table.presentation.generalComponents
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
