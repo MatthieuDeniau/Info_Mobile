@@ -6,6 +6,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.table.data.repository.PlanningRepository
+import com.example.table.data.repository.RecipeRepository
 import com.example.table.presentation.RecipeVM
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,6 +25,7 @@ sealed interface AddEditPlanningEvent {
 @HiltViewModel
 class AddEditPlanningViewModel @Inject constructor(
     private val useCases: PlanningRepository,
+    private val useCases2: RecipeRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -38,6 +40,10 @@ class AddEditPlanningViewModel @Inject constructor(
 
     private val _date = mutableStateOf<LocalDate>(LocalDate.now())
     val date: State<LocalDate> = _date
+
+    private val _searchQuery = MutableStateFlow("")
+    val searchQuery: StateFlow<String> = _searchQuery.asStateFlow()
+
 
     init {
         val dateStr = savedStateHandle.get<String>("day")
@@ -78,4 +84,21 @@ class AddEditPlanningViewModel @Inject constructor(
             _recipeList.value = useCases.sortRecipesByLastUsed(_recipeList.value)
         }
     }
+
+    fun onSearchQueryChanged(query: String) {
+        _searchQuery.value = query
+
+        viewModelScope.launch {
+            if (query.isBlank()) {
+                useCases.getAllRecipes().collect { vms ->
+                    _recipeList.value = useCases.sortRecipesByLastUsed(vms)
+                }
+            } else {
+                useCases2.searchRecipesByName(query).collect { vms ->
+                    _recipeList.value = useCases.sortRecipesByLastUsed(vms)
+                }
+            }
+        }
+    }
+
 }

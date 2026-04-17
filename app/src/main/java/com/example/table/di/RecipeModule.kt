@@ -26,7 +26,8 @@ object RecipeModule {
             sortRecipesByLastUsed = SortRecipesByLastUsedUseCase(),
             saveRecipe = SaveRecipeUseCase(recipeDao, ingredientDao),
             deleteRecipe = DeleteRecipeUseCase(recipeDao),
-            updateRecipe = UpdateRecipeUseCase(recipeDao, ingredientDao)
+            updateRecipe = UpdateRecipeUseCase(recipeDao, ingredientDao),
+            searchRecipesByName = SearchRecipesByNameUseCase(recipeDao, ingredientDao)
         )
     }
 }

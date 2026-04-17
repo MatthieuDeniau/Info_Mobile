@@ -2,6 +2,7 @@ package com.example.table.presentation.planning
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -14,6 +15,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -32,6 +34,7 @@ fun AddEditPlanningScreen(
     viewModel: AddEditPlanningViewModel = hiltViewModel()
 ) {
     val recipeList by viewModel.recipeList.collectAsState()
+    val searchQuery by viewModel.searchQuery.collectAsState()
     val selectedRecipe by viewModel.selectedRecipe
     val slot by viewModel.slot
     val selectedDate by viewModel.date
@@ -63,12 +66,23 @@ fun AddEditPlanningScreen(
             }
         },
         containerColor = MaterialTheme.colorScheme.secondary
-    ) { contentPadding ->
-        Column(
+    ) { padding ->
+        val focusManager = LocalFocusManager.current
+        Card(
             modifier = Modifier
-                .padding(contentPadding)
                 .fillMaxSize()
-        ) {
+                .padding(padding)
+                .padding(horizontal = 12.dp)
+                .clickable(
+                    indication = null,
+                    interactionSource = remember { MutableInteractionSource() }
+                ) {
+                    focusManager.clearFocus()
+                },
+            elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary),
+            shape = RoundedCornerShape(16.dp),
+        ){
             Column(
                 modifier = Modifier
                     .padding(16.dp)
@@ -103,10 +117,10 @@ fun AddEditPlanningScreen(
                             modifier = Modifier.weight(1f),
                             contentPadding = PaddingValues(horizontal = 4.dp),
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = if (slot == id) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.primary,
-                                contentColor = if (slot == id) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.tertiary
+                                containerColor = if (slot == id) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.secondary,
+                                contentColor = if (slot == id) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.tertiary
                             ),
-                            border = if (slot != id) BorderStroke(1.dp, Color.Black.copy(alpha = 0.25f)) else null,
+                            border = if (slot != id) BorderStroke(1.dp,MaterialTheme.colorScheme.tertiary.copy(alpha = 0.25f)) else null,
                             shape = RoundedCornerShape(40.dp)
                         ) {
                             Text(
@@ -128,18 +142,69 @@ fun AddEditPlanningScreen(
                     modifier = Modifier.padding(bottom = 12.dp)
                 )
 
-                LazyColumn(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(1f),
-                    verticalArrangement = Arrangement.spacedBy(12.dp)
-                ) {
-                    items(recipeList, key = { it.id }) { recipe ->
-                        RecipeItem(
-                            recipe = recipe,
-                            isSelected = selectedRecipe?.id == recipe.id,
-                            onSelect = { viewModel.onEvent(AddEditPlanningEvent.SelectedRecipe(recipe)) }
+                Card(
+                    elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondary),
+                    shape = RoundedCornerShape(16.dp),
+                ){
+                    Column(
+                        modifier = Modifier.padding(16.dp)
+                    ) {
+                        TextField(
+                            value = searchQuery,
+                            onValueChange = { viewModel.onSearchQueryChanged(it) },
+                            placeholder = { Text("Rechercher une recette…") },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 16.dp),
+                            singleLine = true,
+                            shape = RoundedCornerShape(16.dp),
+                            colors = TextFieldDefaults.colors(
+                                focusedContainerColor = MaterialTheme.colorScheme.primary,
+                                unfocusedContainerColor = MaterialTheme.colorScheme.primary,
+                                focusedTextColor = MaterialTheme.colorScheme.tertiary,
+                                unfocusedTextColor = MaterialTheme.colorScheme.tertiary,
+                                cursorColor = MaterialTheme.colorScheme.tertiary,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent,
+                                disabledIndicatorColor = Color.Transparent,
+                                errorIndicatorColor = Color.Transparent
+                            )
                         )
+
+                        LazyColumn(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .weight(1f),
+                            verticalArrangement = Arrangement.spacedBy(12.dp)
+                        ) {
+                            if (recipeList.isEmpty()) {
+                                item {
+                                    Text(
+                                        text = "Aucune recette trouvée",
+                                        color = MaterialTheme.colorScheme.tertiary.copy(alpha = 0.7f),
+                                        style = MaterialTheme.typography.bodyLarge,
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(top = 32.dp),
+                                    )
+                                }
+                            } else {
+                                items(recipeList, key = { it.id }) { recipe ->
+                                    RecipeItem(
+                                        recipe = recipe,
+                                        isSelected = selectedRecipe?.id == recipe.id,
+                                        onSelect = {
+                                            viewModel.onEvent(
+                                                AddEditPlanningEvent.SelectedRecipe(
+                                                    recipe
+                                                )
+                                            )
+                                        }
+                                    )
+                                }
+                            }
+                        }
                     }
                 }
             }
