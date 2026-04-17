@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -11,8 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.table.blanc
-import com.example.table.gris
+import com.example.table.navigation.Screen
 import com.example.table.presentation.generalComponents.BottomBar
 import com.example.table.presentation.generalComponents.TopBar
 import com.example.table.presentation.settings.components.*
@@ -35,24 +36,22 @@ fun SettingScreen(
     Scaffold(
         topBar = {
             TopBar(
-                label = "Paramètres",
-                rightIcon = Icons.Default.Close,
-                onRightClick = { navController.popBackStack() }
+                label = "Notification",
+                rightIcon = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                onRightClick = { navController.navigate(Screen.ThemeScreen.route) }
             )
         },
         bottomBar = {
             BottomBar(navController)
         },
-        containerColor = gris
+        containerColor = MaterialTheme.colorScheme.secondary
     ) { padding ->
         Card(
             modifier = Modifier
                 .padding(padding)
-                .padding(12.dp)
-                //.fillMaxSize()
-            ,
+                .padding(12.dp),
             elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
-            colors = CardDefaults.cardColors(containerColor = blanc),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary),
             shape = RoundedCornerShape(16.dp)
         ) {
             LazyColumn(
@@ -111,8 +110,7 @@ fun SettingScreen(
                     Spacer(modifier = Modifier.height(8.dp))
                     SettingsActionButtons(
                         onSave = {
-                            viewModel.saveSettings();
-                            navController.popBackStack()
+                            viewModel.saveSettings()
                         },
                     )
                 }

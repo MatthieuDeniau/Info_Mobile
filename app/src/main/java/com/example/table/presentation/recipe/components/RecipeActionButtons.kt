@@ -5,8 +5,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.table.noir
-import com.example.table.blanc
 
 @Composable
 fun RecipeActionButtons(
@@ -14,6 +12,7 @@ fun RecipeActionButtons(
     onCancel: () -> Unit,
     saveButtonText: String = "Enregistrer",
 ) {
+    val colorScheme = MaterialTheme.colorScheme
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -24,8 +23,8 @@ fun RecipeActionButtons(
             onClick = onCancel,
             modifier = Modifier.weight(1f),
             colors = ButtonDefaults.outlinedButtonColors(
-                containerColor = noir,
-                contentColor = blanc
+                containerColor = colorScheme.tertiary,
+                contentColor = colorScheme.primary
             )
         ) {
             Text("Annuler")
@@ -35,8 +34,8 @@ fun RecipeActionButtons(
             onClick = onSave,
             modifier = Modifier.weight(1f),
             colors = ButtonDefaults.buttonColors(
-                containerColor = noir,
-                contentColor = blanc
+                containerColor = colorScheme.tertiary,
+                contentColor = colorScheme.primary
             )
         ) {
             Text(saveButtonText)

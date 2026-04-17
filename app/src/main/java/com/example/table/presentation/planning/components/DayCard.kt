@@ -5,14 +5,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
-import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.table.blanc
-import com.example.table.gris
-import com.example.table.noir
 import com.example.table.presentation.planning.DayMeals
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -29,7 +25,7 @@ fun DayCard(
             .padding(12.dp)
             .fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
-        colors = CardDefaults.cardColors(containerColor = blanc),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary),
         shape = RoundedCornerShape(16.dp)
     ) {
         Column(
@@ -47,7 +43,7 @@ fun DayCard(
                 Text(
                     text = formattedDate,
                     style = MaterialTheme.typography.titleLarge,
-                    color = noir,
+                    color = MaterialTheme.colorScheme.tertiary,
                     modifier = Modifier.weight(1f)
                 )
 
@@ -55,14 +51,14 @@ fun DayCard(
                     onClick = { onAddMealClick(dayMeals.date) },
                     shape = RoundedCornerShape(12.dp),
                     colors = IconButtonDefaults.filledIconButtonColors(
-                        containerColor = gris,
-                        contentColor = noir
+                        containerColor = MaterialTheme.colorScheme.secondary,
+                        contentColor = MaterialTheme.colorScheme.tertiary
                     )
                 ) {
                     Icon(
                         imageVector = Icons.Default.Add,
                         contentDescription = "Ajouter un repas",
-                        tint = noir
+                        tint = MaterialTheme.colorScheme.tertiary
                     )
                 }
             }
@@ -112,7 +108,7 @@ fun DayCard(
                     text = "Aucun repas planifié",
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.padding(vertical = 8.dp),
-                    color = noir
+                    color = MaterialTheme.colorScheme.tertiary
                 )
             }
         }

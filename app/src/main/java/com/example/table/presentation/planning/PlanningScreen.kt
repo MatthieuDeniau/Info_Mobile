@@ -1,6 +1,5 @@
 package com.example.table.presentation.planning
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -14,7 +13,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.table.gris
 import com.example.table.navigation.Screen
 import com.example.table.presentation.generalComponents.BottomBar
 import com.example.table.presentation.planning.components.DayCard
@@ -41,7 +39,7 @@ fun PlanningScreen(
         bottomBar = {
             BottomBar(navController)
         },
-        containerColor = gris
+        containerColor = MaterialTheme.colorScheme.secondary
     ) { contentPadding ->
         Column(
             modifier = Modifier

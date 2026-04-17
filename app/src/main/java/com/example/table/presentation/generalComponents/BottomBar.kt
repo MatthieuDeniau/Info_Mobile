@@ -14,12 +14,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.MenuBook
-import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.Event
-import androidx.compose.material.icons.outlined.Menu
 import androidx.compose.material.icons.outlined.Settings
-import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -33,10 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.table.blanc
-import com.example.table.gris
 import com.example.table.navigation.Screen
-import com.example.table.noir
 
 @Composable
 fun MenuItem(
@@ -45,7 +38,7 @@ fun MenuItem(
     isSelected: Boolean,
     onClick: () -> Unit
 ) {
-    val color = if (isSelected) noir else gris.copy(red = 165/250f, green = 165/250f, blue = 165/250f)
+    val color = if (isSelected) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.secondary.copy(red = 165/250f, green = 165/250f, blue = 165/250f)
 
     Column(
         modifier = Modifier
@@ -80,14 +73,14 @@ fun BottomBar(navController: NavController) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(blanc)
+            .background(MaterialTheme.colorScheme.primary)
             .padding(top = 16.dp, bottom = 0.dp)
             .navigationBarsPadding(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         MenuItem(
-            icon = Icons.Outlined.Event,//Icons.Outlined.CalendarMonth
+            icon = Icons.Outlined.Event,
             label = "Planning",
             isSelected = currentRoute == Screen.PlanningScreen.route
         ) {
@@ -95,16 +88,6 @@ fun BottomBar(navController: NavController) {
                 navController.navigate(Screen.PlanningScreen.route)
             }
         }
-
-        /*MenuItem(
-            icon = Icons.Outlined.ShoppingCart,
-            label = "NI",
-            isSelected = currentRoute == ""
-        ) {
-            if (currentRoute != "") {
-                navController.navigate("NI")
-            }
-        }*/
 
         MenuItem(
             icon = Icons.AutoMirrored.Default.MenuBook,
@@ -121,7 +104,7 @@ fun BottomBar(navController: NavController) {
             label = "Paramètres",
             isSelected = currentRoute == Screen.SettingScreen.route
         ) {
-            if (currentRoute != Screen.SettingScreen.route) {
+            if (currentRoute != Screen.SettingScreen.route || currentRoute == Screen.ThemeScreen.route) {
                 navController.navigate(Screen.SettingScreen.route)
             }
         }

@@ -9,13 +9,15 @@ import com.example.table.domain.model.MealEntity
 import com.example.table.domain.model.RecipeEntity
 import com.example.table.domain.model.IngredientEntity
 import com.example.table.domain.model.SettingsEntity
+import com.example.table.domain.model.ThemeEntity
 
 @Database(
     entities = [
         RecipeEntity::class,
         MealEntity::class,
         IngredientEntity::class,
-        SettingsEntity::class
+        SettingsEntity::class,
+        ThemeEntity::class
     ],
     version = 1,
     exportSchema = false
@@ -29,6 +31,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract val mealDao: MealDao
     abstract val ingredientDao: IngredientDao
     abstract val settingsDao: SettingsDao
+    abstract val themeDao: ThemeDao
 
     companion object {
         const val DATABASE_NAME = "mealplanner.db"

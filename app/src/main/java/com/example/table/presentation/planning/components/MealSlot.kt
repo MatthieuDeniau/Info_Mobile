@@ -9,8 +9,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.table.gris
-import com.example.table.noir
 import com.example.table.presentation.MealVM
 import java.time.LocalDate
 
@@ -26,14 +24,14 @@ fun MealSlot(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp)
-            .background(color = gris, shape = RoundedCornerShape(12.dp))
+            .background(color = MaterialTheme.colorScheme.secondary, shape = RoundedCornerShape(12.dp))
             .clickable { onSlotClick(slot, date) }
             .padding(12.dp)
     ) {
         Text(
             text = label,
             style = MaterialTheme.typography.labelLarge,
-            color = noir
+            color = MaterialTheme.colorScheme.tertiary
         )
 
         Spacer(Modifier.height(4.dp))
@@ -42,7 +40,7 @@ fun MealSlot(
             Text(
                 text = "Aucun repas",
                 style = MaterialTheme.typography.bodySmall,
-                color = noir
+                color = MaterialTheme.colorScheme.tertiary
             )
         } else {
             meals.forEach { meal ->
@@ -54,7 +52,7 @@ fun MealSlot(
                     Text(
                         text = "● " + meal.recipe.name,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = noir,
+                        color = MaterialTheme.colorScheme.tertiary,
                     )
                 }
             }

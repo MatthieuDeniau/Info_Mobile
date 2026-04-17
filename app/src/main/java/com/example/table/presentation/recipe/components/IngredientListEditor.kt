@@ -9,8 +9,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.table.presentation.IngredientVM
-import com.example.table.noir
-import com.example.table.blanc
 
 @Composable
 fun IngredientListEditor(
@@ -21,7 +19,7 @@ fun IngredientListEditor(
     Column(modifier = modifier.fillMaxWidth()) {
         Text(
             text = "Ingrédients",
-            color = noir,
+            color = MaterialTheme.colorScheme.tertiary,
             modifier = Modifier.padding(vertical = 8.dp)
         )
 
@@ -47,8 +45,8 @@ fun IngredientListEditor(
                 onIngredientsChange(ingredients + IngredientVM(name = "", quantity = null))
             },
             colors = ButtonDefaults.buttonColors(
-                containerColor = noir,
-                contentColor = blanc
+                containerColor = MaterialTheme.colorScheme.tertiary,
+                contentColor = MaterialTheme.colorScheme.primary
             ),
             modifier = Modifier.align(Alignment.Start)
         ) {

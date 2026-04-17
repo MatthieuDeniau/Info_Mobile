@@ -10,9 +10,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.table.blanc
-import com.example.table.gris
-import com.example.table.noir
 
 @Composable
 fun TitleSwitchSetting(
@@ -20,6 +17,7 @@ fun TitleSwitchSetting(
     value: Boolean,
     onValueChange: (Boolean) -> Unit
 ) {
+    val colorScheme = MaterialTheme.colorScheme
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -28,18 +26,18 @@ fun TitleSwitchSetting(
         Text(
             text = label,
             style = MaterialTheme.typography.titleLarge,
-            color = noir,
+            color = colorScheme.tertiary,
             modifier = Modifier.weight(1f)
         )
         Switch(
             checked = value,
             onCheckedChange = onValueChange,
             colors = SwitchDefaults.colors(
-                checkedThumbColor = blanc,
-                checkedTrackColor = noir,
-                uncheckedThumbColor = noir,
-                uncheckedTrackColor = gris,
-                uncheckedBorderColor = noir
+                checkedThumbColor = colorScheme.primary,
+                checkedTrackColor = colorScheme.tertiary,
+                uncheckedThumbColor = colorScheme.tertiary,
+                uncheckedTrackColor = colorScheme.secondary,
+                uncheckedBorderColor = colorScheme.tertiary
             )
         )
     }

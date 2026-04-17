@@ -1,11 +1,11 @@
 package com.example.table.presentation.recipe
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -14,8 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.table.blanc
-import com.example.table.gris
 import com.example.table.presentation.generalComponents.TopBar
 import com.example.table.presentation.recipe.components.*
 
@@ -34,7 +32,7 @@ fun EditRecipeScreen(
                 label = "Modifier la Recette",
             )
         },
-        containerColor = gris
+        containerColor = MaterialTheme.colorScheme.secondary
     ) { padding ->
         Card(
             modifier = Modifier
@@ -42,7 +40,7 @@ fun EditRecipeScreen(
                 .padding(padding)
                 .padding(horizontal = 12.dp),
             elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
-            colors = CardDefaults.cardColors(containerColor = blanc),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary),
             shape = RoundedCornerShape(16.dp)
         ){
 

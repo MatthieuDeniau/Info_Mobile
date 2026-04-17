@@ -82,7 +82,7 @@ class SettingViewModel @Inject constructor(
                 snackTime = _snackTime.value,
 
                 eveningEnabled = _eveningEnabled.value,
-                eveningTime = _eveningTime.value
+                eveningTime = _eveningTime.value,
             )
 
             useCases.saveSettings(settings)

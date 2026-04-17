@@ -5,16 +5,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -22,9 +17,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.table.blanc
-import com.example.table.gris
-import com.example.table.noir
 import com.example.table.presentation.formatQuantity
 import com.example.table.presentation.generalComponents.TopBar
 
@@ -43,7 +35,7 @@ fun RecipeDetailsScreen(
                 onRightClick = { navController.popBackStack() }
             )
         },
-        containerColor = gris
+        containerColor = MaterialTheme.colorScheme.secondary
     ) { padding ->
         if (recipe != null) {
              Card(
@@ -52,7 +44,7 @@ fun RecipeDetailsScreen(
                      .padding(padding)
                      .padding(horizontal = 12.dp),
                  elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
-                 colors = CardDefaults.cardColors(containerColor = blanc),
+                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary),
                  shape = RoundedCornerShape(16.dp)
              ){
                 LazyColumn(
@@ -67,7 +59,7 @@ fun RecipeDetailsScreen(
                             text = recipe!!.name,
                             fontSize = 28.sp,
                             fontWeight = FontWeight.Bold,
-                            color = noir
+                            color = MaterialTheme.colorScheme.tertiary
                         )
                     }
 
@@ -79,28 +71,14 @@ fun RecipeDetailsScreen(
                                 text = "Ingrédients",
                                 fontSize = 20.sp,
                                 fontWeight = FontWeight.SemiBold,
-                                color = noir
+                                color = MaterialTheme.colorScheme.tertiary
                             )
-                            /*FilledIconButton(
-                                onClick = { },
-                                shape = RoundedCornerShape(12.dp),
-                                colors = IconButtonDefaults.filledIconButtonColors(
-                                    containerColor = blanc,
-                                    contentColor = noir
-                                )
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Outlined.ShoppingCart,
-                                    contentDescription = "Ajouter a liste de course",
-                                    tint = noir
-                                )
-                            }*/
                         }
                     }
 
                     items(recipe!!.ingredients) { ingredient ->
                         Card(
-                            colors = CardDefaults.cardColors(containerColor = gris),
+                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondary),
                             shape = RoundedCornerShape(12.dp)
                         ) {
                             Row(
@@ -111,14 +89,14 @@ fun RecipeDetailsScreen(
                                 Text(
                                     text = ingredient.name,
                                     fontSize = 16.sp,
-                                    color = noir,
+                                    color = MaterialTheme.colorScheme.tertiary,
                                     modifier = Modifier.weight(1f)
                                 )
 
                                 Text(
                                     text = ingredient.formatQuantity(),
                                     fontSize = 16.sp,
-                                    color = noir
+                                    color = MaterialTheme.colorScheme.tertiary
                                 )
                             }
                         }
@@ -130,20 +108,20 @@ fun RecipeDetailsScreen(
                             text = "Instructions",
                             fontSize = 20.sp,
                             fontWeight = FontWeight.SemiBold,
-                            color = noir
+                            color = MaterialTheme.colorScheme.tertiary
                         )
                     }
 
                     item {
                         Card(
-                            colors = CardDefaults.cardColors(containerColor = gris),
+                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondary),
                             shape = RoundedCornerShape(12.dp)
                         ) {
                             Text(
                                 text = recipe!!.instructions,
                                 modifier = Modifier.padding(16.dp),
                                 fontSize = 16.sp,
-                                color = noir
+                                color = MaterialTheme.colorScheme.tertiary
                             )
                         }
                     }

@@ -1,6 +1,5 @@
 package com.example.table.presentation.recipe
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -33,9 +32,6 @@ import com.example.table.navigation.Screen
 import com.example.table.presentation.RecipeVM
 import com.example.table.presentation.generalComponents.BottomBar
 import com.example.table.presentation.generalComponents.TopBar
-import com.example.table.blanc
-import com.example.table.gris
-import com.example.table.noir
 
 @Composable
 fun RecipeListScreen(
@@ -55,7 +51,7 @@ fun RecipeListScreen(
         bottomBar = {
             BottomBar(navController)
         },
-        containerColor = gris
+        containerColor = MaterialTheme.colorScheme.secondary
     ) { contentPadding ->
         Column(
             modifier = Modifier
@@ -88,7 +84,7 @@ fun RecipeItem(
             .padding(12.dp)
             .fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
-        colors = CardDefaults.cardColors(containerColor = blanc),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary),
         shape = RoundedCornerShape(16.dp)
     ) {
         Column(
@@ -104,7 +100,7 @@ fun RecipeItem(
                 Text(
                     text = recipe.name,
                     style = MaterialTheme.typography.titleLarge,
-                    color = noir,
+                    color = MaterialTheme.colorScheme.tertiary,
                     modifier = Modifier.weight(1f)
                 )
 
@@ -114,7 +110,7 @@ fun RecipeItem(
                     Icon(
                         imageVector = Icons.Default.Edit,
                         contentDescription = "Modifier",
-                        tint = noir
+                        tint = MaterialTheme.colorScheme.tertiary
                     )
                 }
 
@@ -124,7 +120,7 @@ fun RecipeItem(
                     Icon(
                         imageVector = Icons.Default.Delete,
                         contentDescription = "Supprimer",
-                        tint = noir)
+                        tint = MaterialTheme.colorScheme.tertiary)
                 }
             }
 
@@ -132,7 +128,7 @@ fun RecipeItem(
                 text = "${if(recipe.ingredients.isEmpty()) "Aucun" else recipe.ingredients.size} ingrédients",
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(vertical = 8.dp),
-                color = noir
+                color = MaterialTheme.colorScheme.tertiary
             )
         }
     }

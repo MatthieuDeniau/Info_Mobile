@@ -38,4 +38,7 @@ object DatabaseModule {
 
     @Provides
     fun provideSettingsDao(db: AppDatabase) = db.settingsDao
+
+    @Provides
+    fun provideThemeDao(db: AppDatabase) = db.themeDao
 }

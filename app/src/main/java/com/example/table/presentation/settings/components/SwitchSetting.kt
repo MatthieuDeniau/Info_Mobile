@@ -10,9 +10,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.table.blanc
-import com.example.table.gris
-import com.example.table.noir
 
 @Composable
 fun SwitchSetting(
@@ -27,18 +24,18 @@ fun SwitchSetting(
     ) {
         Text(
             text = label,
-            color = noir,
+            color = MaterialTheme.colorScheme.tertiary,
             style = MaterialTheme.typography.bodyLarge
         )
         Switch(
             checked = value,
             onCheckedChange = onValueChange,
             colors = SwitchDefaults.colors(
-                checkedThumbColor = blanc,
-                checkedTrackColor = noir,
-                uncheckedThumbColor = noir,
-                uncheckedTrackColor = gris,
-                uncheckedBorderColor = noir
+                checkedThumbColor = MaterialTheme.colorScheme.primary,
+                checkedTrackColor = MaterialTheme.colorScheme.tertiary,
+                uncheckedThumbColor = MaterialTheme.colorScheme.tertiary,
+                uncheckedTrackColor = MaterialTheme.colorScheme.secondary,
+                uncheckedBorderColor = MaterialTheme.colorScheme.tertiary
             )
         )
     }

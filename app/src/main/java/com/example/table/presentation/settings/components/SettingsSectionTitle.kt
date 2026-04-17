@@ -8,13 +8,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.table.noir
 
 @Composable
 fun SettingsSectionTitle(title: String) {
     Text(
         text = title,
-        color = noir,
+        color = MaterialTheme.colorScheme.tertiary,
         style = MaterialTheme.typography.titleMedium.copy(
             fontSize = 18.sp,
             fontWeight = FontWeight.SemiBold

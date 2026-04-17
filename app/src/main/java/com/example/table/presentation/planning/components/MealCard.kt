@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,7 +25,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.table.noir
 import com.example.table.presentation.MealVM
 import com.example.table.presentation.RecipeVM
 import java.time.format.DateTimeFormatter
@@ -51,7 +51,7 @@ fun MealCard (meal: MealVM, recipe: RecipeVM, onDeleteClick: (MealVM) -> Unit) {
                     recipe.name,
                     style = TextStyle(
                         fontSize = 25.sp,
-                        color = noir
+                        color = MaterialTheme.colorScheme.tertiary
                     ),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
@@ -79,7 +79,7 @@ fun MealCard (meal: MealVM, recipe: RecipeVM, onDeleteClick: (MealVM) -> Unit) {
                 Icon(
                     imageVector = Icons.Default.Delete,
                     contentDescription = "Delete",
-                    tint = noir
+                    tint = MaterialTheme.colorScheme.tertiary
                 )
             }
             IconButton(
@@ -88,7 +88,7 @@ fun MealCard (meal: MealVM, recipe: RecipeVM, onDeleteClick: (MealVM) -> Unit) {
                 Icon(
                     imageVector = Icons.Default.Edit,
                     contentDescription = "Edit",
-                    tint = noir
+                    tint = MaterialTheme.colorScheme.tertiary
                 )
             }
         }

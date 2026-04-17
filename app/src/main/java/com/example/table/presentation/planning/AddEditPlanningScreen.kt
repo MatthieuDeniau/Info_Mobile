@@ -1,7 +1,6 @@
 package com.example.table.presentation.planning
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -21,10 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.table.blanc
-import com.example.table.gris
 import com.example.table.navigation.Screen
-import com.example.table.noir
 import com.example.table.presentation.RecipeVM
 import com.example.table.presentation.generalComponents.TopBar
 import java.time.format.DateTimeFormatter
@@ -56,8 +52,8 @@ fun AddEditPlanningScreen(
                         popUpTo(Screen.PlanningScreen.route) { inclusive = true }
                     }
                 },
-                containerColor = noir,
-                contentColor = blanc,
+                containerColor = MaterialTheme.colorScheme.tertiary,
+                contentColor = MaterialTheme.colorScheme.primary,
                 shape = RoundedCornerShape(40.dp)
             ) {
                 Icon(
@@ -66,7 +62,7 @@ fun AddEditPlanningScreen(
                 )
             }
         },
-        containerColor = gris
+        containerColor = MaterialTheme.colorScheme.secondary
     ) { contentPadding ->
         Column(
             modifier = Modifier
@@ -86,7 +82,7 @@ fun AddEditPlanningScreen(
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontSize = 24.sp
                     ),
-                    color = noir,
+                    color = MaterialTheme.colorScheme.tertiary,
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
 
@@ -107,8 +103,8 @@ fun AddEditPlanningScreen(
                             modifier = Modifier.weight(1f),
                             contentPadding = PaddingValues(horizontal = 4.dp),
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = if (slot == id) noir else blanc,
-                                contentColor = if (slot == id) blanc else noir
+                                containerColor = if (slot == id) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.primary,
+                                contentColor = if (slot == id) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.tertiary
                             ),
                             border = if (slot != id) BorderStroke(1.dp, Color.Black.copy(alpha = 0.25f)) else null,
                             shape = RoundedCornerShape(40.dp)
@@ -128,7 +124,7 @@ fun AddEditPlanningScreen(
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontSize = 20.sp
                     ),
-                    color = noir,
+                    color = MaterialTheme.colorScheme.tertiary,
                     modifier = Modifier.padding(bottom = 12.dp)
                 )
 
@@ -163,8 +159,8 @@ fun RecipeItem(
             .clickable { onSelect() },
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(
-            containerColor = if (isSelected) noir else blanc,
-            contentColor = if (isSelected) blanc else noir
+            containerColor = if (isSelected) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.primary,
+            contentColor = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.tertiary
         ),
         border = if (!isSelected) BorderStroke(1.dp, Color.Black.copy(alpha = 0.25f)) else null
     ) {
@@ -185,7 +181,7 @@ fun RecipeItem(
                 Icon(
                     imageVector = Icons.Default.Check,
                     contentDescription = "Sélectionné",
-                    tint = blanc
+                    tint = MaterialTheme.colorScheme.primary
                 )
             }
         }

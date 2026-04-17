@@ -1,7 +1,6 @@
 package com.example.table.presentation.settings.components
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -12,10 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.table.blanc
-import com.example.table.gris
-import com.example.table.noir
-import java.time.LocalTime
 import java.util.*
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -38,7 +33,7 @@ fun TimePickerSetting(
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(
             text = label,
-            color = noir,
+            color = MaterialTheme.colorScheme.tertiary,
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier.padding(bottom = 8.dp)
         )
@@ -51,8 +46,8 @@ fun TimePickerSetting(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(12.dp),
             colors = ButtonDefaults.outlinedButtonColors(
-                containerColor = blanc,
-                contentColor = noir
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.tertiary
             ),
             border = BorderStroke(1.dp, Color.LightGray)
         ) {
@@ -72,7 +67,7 @@ fun TimePickerSetting(
 
         AlertDialog(
             onDismissRequest = { showDialog = false },
-            containerColor = blanc,
+            containerColor = MaterialTheme.colorScheme.primary,
             confirmButton = {
                 TextButton(
                     onClick = {
@@ -86,31 +81,31 @@ fun TimePickerSetting(
                         showDialog = false
                     }
                 ) {
-                    Text("OK", color = noir)
+                    Text("OK", color = MaterialTheme.colorScheme.tertiary)
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showDialog = false }) {
-                    Text("Annuler", color = noir)
+                    Text("Annuler", color = MaterialTheme.colorScheme.tertiary)
                 }
             },
             text = {
                 TimePicker(
                     state = timePickerState,
                     colors = TimePickerDefaults.colors(
-                        clockDialColor = gris,
-                        clockDialSelectedContentColor = blanc,
-                        clockDialUnselectedContentColor = noir,
-                        selectorColor = noir,
-                        periodSelectorBorderColor = noir,
-                        periodSelectorSelectedContainerColor = noir,
-                        periodSelectorUnselectedContainerColor = blanc,
-                        periodSelectorSelectedContentColor = blanc,
-                        periodSelectorUnselectedContentColor = noir,
-                        timeSelectorSelectedContainerColor = noir,
-                        timeSelectorUnselectedContainerColor = gris,
-                        timeSelectorSelectedContentColor = blanc,
-                        timeSelectorUnselectedContentColor = noir
+                        clockDialColor = MaterialTheme.colorScheme.secondary,
+                        clockDialSelectedContentColor = MaterialTheme.colorScheme.primary,
+                        clockDialUnselectedContentColor = MaterialTheme.colorScheme.tertiary,
+                        selectorColor = MaterialTheme.colorScheme.tertiary,
+                        periodSelectorBorderColor = MaterialTheme.colorScheme.tertiary,
+                        periodSelectorSelectedContainerColor = MaterialTheme.colorScheme.tertiary,
+                        periodSelectorUnselectedContainerColor = MaterialTheme.colorScheme.primary,
+                        periodSelectorSelectedContentColor = MaterialTheme.colorScheme.primary,
+                        periodSelectorUnselectedContentColor = MaterialTheme.colorScheme.tertiary,
+                        timeSelectorSelectedContainerColor = MaterialTheme.colorScheme.tertiary,
+                        timeSelectorUnselectedContainerColor = MaterialTheme.colorScheme.secondary,
+                        timeSelectorSelectedContentColor = MaterialTheme.colorScheme.primary,
+                        timeSelectorUnselectedContentColor = MaterialTheme.colorScheme.tertiary
                     )
                 )
             }

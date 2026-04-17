@@ -9,5 +9,5 @@ sealed class Screen(val route: String) {
     data object CreateRecipeScreen : Screen(route = "create_recipe")
     data object EditRecipeScreen : Screen(route = "edit_recipe")
     data object SettingScreen : Screen(route = "setting_screen")
-    data object NotificationScreen : Screen(route = "notification_screen")
+    data object ThemeScreen : Screen(route = "theme_screen")
 }

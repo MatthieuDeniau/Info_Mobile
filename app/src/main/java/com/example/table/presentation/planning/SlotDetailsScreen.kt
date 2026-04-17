@@ -7,7 +7,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -15,15 +14,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.table.gris
-import com.example.table.noir
-import com.example.table.blanc
 import com.example.table.navigation.Screen
 import com.example.table.presentation.generalComponents.TopBar
 import java.time.format.DateTimeFormatter
@@ -49,7 +44,7 @@ fun SlotDetailsScreen(
                 onRightClick = { navController.popBackStack() }
             )
         },
-        containerColor = gris
+        containerColor = MaterialTheme.colorScheme.secondary
     ) { padding ->
         Card(
             modifier = Modifier
@@ -57,7 +52,7 @@ fun SlotDetailsScreen(
                 .padding(padding)
                 .padding(horizontal = 12.dp),
             elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
-            colors = CardDefaults.cardColors(containerColor = blanc),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary),
             shape = RoundedCornerShape(16.dp)
         ){
             Column(
@@ -67,7 +62,7 @@ fun SlotDetailsScreen(
                 Text(
                     text = formattedDate,
                     fontSize = 16.sp,
-                    color = noir,
+                    color = MaterialTheme.colorScheme.tertiary,
                     modifier = Modifier.padding(top = 8.dp)
                 )
 
@@ -81,7 +76,7 @@ fun SlotDetailsScreen(
                     ) {
                         Text(
                             text = "Aucun repas pour ce moment.",
-                            color = noir
+                            color = MaterialTheme.colorScheme.tertiary
                         )
                     }
                 } else {
@@ -101,7 +96,7 @@ fun SlotDetailsScreen(
                                         )
                                     },
                                 elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
-                                colors = CardDefaults.cardColors(containerColor = gris),
+                                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondary),
                                 shape = RoundedCornerShape(16.dp)
                             ) {
                                 Row(
@@ -114,7 +109,7 @@ fun SlotDetailsScreen(
                                     Text(
                                         text = meal.recipe.name,
                                         fontSize = 18.sp,
-                                        color = noir,
+                                        color = MaterialTheme.colorScheme.tertiary,
                                         modifier = Modifier.weight(1f)
                                     )
 

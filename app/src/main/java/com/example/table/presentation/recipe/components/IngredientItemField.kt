@@ -3,7 +3,6 @@ package com.example.table.presentation.recipe.components
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -11,7 +10,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.example.table.noir
 import com.example.table.presentation.IngredientVM
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -22,6 +20,7 @@ fun IngredientItemField(
     onDelete: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val noir = MaterialTheme.colorScheme.tertiary
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -39,7 +38,7 @@ fun IngredientItemField(
                 label = { Text("Ingrédient") },
                 modifier = Modifier.weight(1.1f),
                 singleLine = true,
-                colors = TextFieldDefaults.outlinedTextFieldColors(
+                colors = OutlinedTextFieldDefaults.colors(
                     focusedTextColor = noir,
                     unfocusedTextColor = noir,
                     focusedBorderColor = noir,
@@ -60,7 +59,7 @@ fun IngredientItemField(
                 modifier = Modifier.weight(1f),
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                colors = TextFieldDefaults.outlinedTextFieldColors(
+                colors = OutlinedTextFieldDefaults.colors(
                     focusedTextColor = noir,
                     unfocusedTextColor = noir,
                     focusedBorderColor = noir,
@@ -77,7 +76,7 @@ fun IngredientItemField(
                 label = { Text("Unité") },
                 modifier = Modifier.weight(0.9f),
                 singleLine = true,
-                colors = TextFieldDefaults.outlinedTextFieldColors(
+                colors = OutlinedTextFieldDefaults.colors(
                     focusedTextColor = noir,
                     unfocusedTextColor = noir,
                     focusedBorderColor = noir,

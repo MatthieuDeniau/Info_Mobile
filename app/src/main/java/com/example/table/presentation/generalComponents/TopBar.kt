@@ -21,9 +21,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.table.blanc
-import com.example.table.gris
-import com.example.table.noir
 
 @Composable
 fun TopBar(
@@ -33,10 +30,11 @@ fun TopBar(
     onLeftClick: (() -> Unit)? = null,
     onRightClick: (() -> Unit)? = null
 ) {
+    val colorScheme = MaterialTheme.colorScheme
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(gris)
+            .background(colorScheme.secondary)
             .statusBarsPadding()
             .padding(horizontal = 30.dp, vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -51,7 +49,7 @@ fun TopBar(
                         shape = RoundedCornerShape(40.dp)
                     )
                     .background(
-                        color = blanc,
+                        color = colorScheme.primary,
                         shape = RoundedCornerShape(40.dp)
                     ),
                 onClick = onLeftClick
@@ -59,7 +57,7 @@ fun TopBar(
                 Icon(
                     imageVector = leftIcon,
                     contentDescription = "Left action",
-                    tint = noir
+                    tint = colorScheme.tertiary
                 )
             }
         } else {
@@ -69,7 +67,7 @@ fun TopBar(
         Text(
             text = label,
             style = MaterialTheme.typography.titleMedium.copy(fontSize = 24.sp),
-            color = noir
+            color = colorScheme.tertiary
         )
 
         if (rightIcon != null && onRightClick != null) {
@@ -81,7 +79,7 @@ fun TopBar(
                         shape = RoundedCornerShape(40.dp)
                     )
                     .background(
-                        color = blanc,
+                        color = colorScheme.primary,
                         shape = RoundedCornerShape(40.dp)
                     ),
                 onClick = onRightClick
@@ -89,7 +87,7 @@ fun TopBar(
                 Icon(
                     imageVector = rightIcon,
                     contentDescription = "Right action",
-                    tint = noir
+                    tint = colorScheme.tertiary
                 )
             }
         } else {

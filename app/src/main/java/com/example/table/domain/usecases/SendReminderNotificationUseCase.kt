@@ -5,6 +5,7 @@ import android.util.Log
 import com.example.table.data.local.MealDao
 import com.example.table.data.local.SettingsDao
 import java.time.LocalDate
+import java.time.LocalDateTime
 import javax.inject.Inject
 
 class SendReminderNotificationUseCase @Inject constructor(
@@ -21,12 +22,15 @@ class SendReminderNotificationUseCase @Inject constructor(
             return
         }
 
-        val settings = settingsDao.getSetting()
+        val settings = settingsDao.getSetting() ?: return
+
+        if (!settings.allNotificationsEnabled) return
+
         val enabled = when (type) {
-            1 -> settings!!.morningEnabled
-            2 -> settings!!.noonEnabled
-            3 -> settings!!.snackEnabled
-            4 -> settings!!.eveningEnabled
+            1 -> settings.morningEnabled
+            2 -> settings.noonEnabled
+            3 -> settings.snackEnabled
+            4 -> settings.eveningEnabled
             else -> false
         }
 
