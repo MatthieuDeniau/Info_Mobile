@@ -1,5 +1,6 @@
 package com.example.table.presentation.settings
 
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -87,6 +88,7 @@ class SettingViewModel @Inject constructor(
 
             useCases.saveSettings(settings)
             useCases.scheduleAllReminders()
+            useCases.showSaveNotification()
         }
     }
 

@@ -27,12 +27,9 @@ object SettingsModule {
         return SettingsRepository(
             getSettings = GetSettingsUseCase(settingsDao),
             saveSettings = SaveSettingsUseCase(settingsDao),
-            sendNotification = SendNotificationUseCase(
-                notificationManager,
-                reminderBuilder,
-                context
-            ),
-            scheduleAllReminders = ScheduleAllRemindersUseCase(context, settingsDao)
+            sendNotification = SendNotificationUseCase(notificationManager, reminderBuilder, context),
+            scheduleAllReminders = ScheduleAllRemindersUseCase(context, settingsDao),
+            showSaveNotification = ShowSaveNotificationUseCase(context)
         )
     }
 }

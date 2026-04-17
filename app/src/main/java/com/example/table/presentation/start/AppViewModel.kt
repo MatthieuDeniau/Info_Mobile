@@ -35,13 +35,15 @@ class AppEntryViewModel @Inject constructor(
                             eveningEnabled = true, eveningTime = "19:00"
                         )
                     )
+                    checkLastMealPlan()
+                    startCases.scheduleAllReminders()
                 } else if (settings.allNotificationsEnabled) {
                     checkLastMealPlan()
                     startCases.scheduleAllReminders()
                 }
             }
         }
-        initTestRecipes(context = context)
+        initTestRecipes(context)
     }
 
     private fun checkLastMealPlan() {

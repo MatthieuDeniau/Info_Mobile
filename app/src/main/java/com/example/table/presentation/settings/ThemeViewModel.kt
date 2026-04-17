@@ -2,6 +2,7 @@ package com.example.table.presentation.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.table.data.repository.SettingsRepository
 import com.example.table.data.repository.ThemeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ThemeViewModel @Inject constructor(
-    private val useCases: ThemeRepository
+    private val useCases: ThemeRepository,
+    private val useCase: SettingsRepository
 ) : ViewModel() {
 
     private val _theme = MutableStateFlow(true)
@@ -36,6 +38,7 @@ class ThemeViewModel @Inject constructor(
         viewModelScope.launch {
             useCases.saveTheme(isTheme1)
         }
+        useCase.showSaveNotification()
     }
 
     fun onThemeChange(bool: Boolean) { _theme.value = bool }
