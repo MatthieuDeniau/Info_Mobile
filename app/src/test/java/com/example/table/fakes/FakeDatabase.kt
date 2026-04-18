@@ -4,17 +4,19 @@ import com.example.table.data.local.IngredientDao
 import com.example.table.data.local.MealDao
 import com.example.table.data.local.RecipeDao
 import com.example.table.data.local.SettingsDao
+import com.example.table.data.local.ThemeDao
 import com.example.table.domain.model.IngredientEntity
 import com.example.table.domain.model.MealEntity
 import com.example.table.domain.model.RecipeEntity
 import com.example.table.domain.model.SettingsEntity
+import com.example.table.domain.model.ThemeEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import java.time.LocalDate
 
-class FakeDatabase : MealDao, RecipeDao, IngredientDao, SettingsDao {
+class FakeDatabase : MealDao, RecipeDao, IngredientDao, SettingsDao, ThemeDao {
     val meals = MutableStateFlow<List<MealEntity>>(emptyList())
     val recipes = MutableStateFlow<List<RecipeEntity>>(emptyList())
     val ingredients = MutableStateFlow<List<IngredientEntity>>(emptyList())
@@ -59,6 +61,10 @@ class FakeDatabase : MealDao, RecipeDao, IngredientDao, SettingsDao {
 
     override suspend fun getRecipeByIdOnce(id: Int): RecipeEntity? {
         return recipes.value.find { it.id == id }
+    }
+
+    override fun searchRecipesByName(query: String): Flow<List<RecipeEntity>> {
+        TODO("Not yet implemented")
     }
 
     override suspend fun insertRecipe(recipe: RecipeEntity) {
@@ -113,5 +119,13 @@ class FakeDatabase : MealDao, RecipeDao, IngredientDao, SettingsDao {
 
     override suspend fun saveSettings(settings: SettingsEntity) {
         this.settings.value = settings
+    }
+
+    override fun getTheme(): Flow<ThemeEntity?> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun saveTheme(theme: ThemeEntity) {
+        TODO("Not yet implemented")
     }
 }

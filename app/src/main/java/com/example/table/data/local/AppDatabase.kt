@@ -19,7 +19,7 @@ import com.example.table.domain.model.ThemeEntity
         SettingsEntity::class,
         ThemeEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(
