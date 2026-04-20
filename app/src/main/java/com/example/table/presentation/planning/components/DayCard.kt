@@ -1,5 +1,6 @@
 package com.example.table.presentation.planning.components
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -17,6 +18,7 @@ import java.util.Locale
 @Composable
 fun DayCard(
     dayMeals: DayMeals,
+    toast: Toast,
     onAddMealClick: (LocalDate) -> Unit,
     onSlotClick: (Int, LocalDate) -> Unit
 ) {
@@ -37,8 +39,7 @@ fun DayCard(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 val formatter = DateTimeFormatter.ofPattern("EEEE d MMMM", Locale.FRENCH)
-                val formattedDate = dayMeals.date.format(formatter)
-                    .replaceFirstChar { it.uppercase() }
+                val formattedDate = dayMeals.date.format(formatter).replaceFirstChar { it.uppercase() }
 
                 Text(
                     text = formattedDate,
@@ -48,7 +49,14 @@ fun DayCard(
                 )
 
                 FilledIconButton(
-                    onClick = { onAddMealClick(dayMeals.date) },
+                    onClick = {
+                        if (dayMeals.date < LocalDate.now()) {
+                            toast.show()
+                        }
+                        else {
+                            onAddMealClick(dayMeals.date)
+                        }
+                    },
                     shape = RoundedCornerShape(12.dp),
                     colors = IconButtonDefaults.filledIconButtonColors(
                         containerColor = MaterialTheme.colorScheme.secondary,

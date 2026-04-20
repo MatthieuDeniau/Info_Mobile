@@ -1,5 +1,6 @@
 package com.example.table.presentation.planning
 
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -50,9 +51,23 @@ fun AddEditPlanningScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    viewModel.onEvent(AddEditPlanningEvent.SaveMeal)
-                    navController.navigate(Screen.PlanningScreen.route) {
-                        popUpTo(Screen.PlanningScreen.route) { inclusive = true }
+                    if (selectedRecipe != null) {
+                        viewModel.onEvent(AddEditPlanningEvent.SaveMeal)
+                        navController.navigate(Screen.PlanningScreen.route) {
+                            popUpTo(Screen.PlanningScreen.route) { inclusive = true }
+                        }
+                        Toast.makeText(
+                            navController.context,
+                            "Le repas a été enregistré",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    else {
+                        Toast.makeText(
+                            navController.context,
+                            "Aucune recette sélectionnée",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 },
                 containerColor = MaterialTheme.colorScheme.tertiary,
@@ -195,10 +210,7 @@ fun AddEditPlanningScreen(
                                         recipe = recipe,
                                         isSelected = selectedRecipe?.id == recipe.id,
                                         onSelect = {
-                                            viewModel.onEvent(
-                                                AddEditPlanningEvent.SelectedRecipe(
-                                                    recipe
-                                                )
+                                                viewModel.onEvent(AddEditPlanningEvent.SelectedRecipe(recipe)
                                             )
                                         }
                                     )

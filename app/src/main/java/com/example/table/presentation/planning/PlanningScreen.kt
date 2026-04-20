@@ -1,5 +1,6 @@
 package com.example.table.presentation.planning
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -49,6 +50,11 @@ fun PlanningScreen(
             LazyColumn {
                 items(weekMeals) { day ->
                     DayCard(
+                        toast = Toast.makeText(
+                            navController.context,
+                            "Cette date est déjà passée",
+                            Toast.LENGTH_SHORT
+                        ),
                         dayMeals = day,
                         onAddMealClick = { selectedDay ->
                             navController.navigate(
